@@ -58,4 +58,10 @@ dependencies {
     // Support
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
+
+    // Leak Canary
+    betaImplementation deps.leakCanary.real
+    productionImplementation deps.leakCanary.noOp
+
+
 }
