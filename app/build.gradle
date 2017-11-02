@@ -74,6 +74,20 @@ dependencies {
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
 
+    // Dagger
+    implementation deps.dagger.runtime
+    annotationProcessor deps.dagger.compiler
+
+    // Dagger.Android
+    implementation deps.daggerAndroid.runtime
+    annotationProcessor deps.daggerAndroid.compiler
+
+    // Retrofit
+    implementation deps.retrofit.base
+    implementation deps.retrofit.gson
+    implementation deps.okHttpLogginInterceptor
+    implementation deps.stetho
+
     // Leak Canary
     betaImplementation deps.leakCanary.real
     productionImplementation deps.leakCanary.noOp
