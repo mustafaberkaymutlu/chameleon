@@ -10,7 +10,6 @@ buildscript {
             'buildTools': '26.0.2',
             'minSdk': 23,
             'targetSdk': 26,
-            'kotlin': '1.1.51',
 
             'versionCode' : versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild,
             'versionName' : "${versionMajor}.${versionMinor}.${versionPatch}",
@@ -48,6 +47,10 @@ buildscript {
                     'real': "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
                     'noOp': "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}",
             ],
+            'fabric': [
+                    'plugin': 'io.fabric.tools:gradle:1.24.4',
+                    'crashlytics': 'com.crashlytics.sdk.android:crashlytics:2.7.1@aar'
+            ],
             'mosby': [
                     'core': "com.hannesdorfmann.mosby3:mvp:${versions.mosby}",
                     'viewState': "com.hannesdorfmann.mosby3:viewstate:${versions.mosby}",
@@ -67,7 +70,6 @@ buildscript {
             ],
             'okHttpLogginInterceptor': 'com.squareup.okhttp3:logging-interceptor:3.9.0',
             'timber': 'com.jakewharton.timber:timber:4.5.1',
-            'crashlytics': 'com.crashlytics.sdk.android:crashlytics:2.6.8@aar',
             'stetho': 'com.facebook.stetho:stetho-okhttp3:1.5.0',
     ]
 

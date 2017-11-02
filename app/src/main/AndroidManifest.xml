@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.epictimes.owl">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".OwlApplication"
         android:allowBackup="true"
@@ -18,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="7e616bdbc7eee9ab211f5dbea00eba1be1307351" />
+    </application>
 </manifest>

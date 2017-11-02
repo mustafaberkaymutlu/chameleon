@@ -2,8 +2,11 @@ package net.epictimes.owl;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+
+import io.fabric.sdk.android.Fabric;
 
 public class OwlApplication extends Application {
     private RefWatcher refWatcher;
@@ -16,6 +19,8 @@ public class OwlApplication extends Application {
             return;
         }
         refWatcher = LeakCanary.install(this);
+
+        Fabric.with(this, new Crashlytics());
     }
 
     public RefWatcher getRefWatcher() {
