@@ -80,4 +80,5 @@ dependencies {
 
     implementation(deps.fabric.crashlytics) { transitive = true }
 
+    implementation deps.timber
 }

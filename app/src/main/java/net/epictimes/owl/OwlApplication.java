@@ -7,6 +7,7 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import io.fabric.sdk.android.Fabric;
+import timber.log.Timber;
 
 public class OwlApplication extends Application {
     private RefWatcher refWatcher;
@@ -21,6 +22,16 @@ public class OwlApplication extends Application {
         refWatcher = LeakCanary.install(this);
 
         Fabric.with(this, new Crashlytics());
+
+        initTimber();
+    }
+
+    private void initTimber() {
+        final Timber.Tree tree = BuildConfig.DEBUG
+                ? new Timber.DebugTree()
+                : new ReleaseLoggingTree();
+
+        Timber.plant(tree);
     }
 
     public RefWatcher getRefWatcher() {
