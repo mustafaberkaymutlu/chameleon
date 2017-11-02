@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId "net.epictimes.owl"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+    }
+
+    signingConfigs {
+        debugKey {
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('../key/debug.keystore')
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            zipAlignEnabled false
+            minifyEnabled false
+            useProguard false
+            versionNameSuffix '-debug'
+            signingConfig signingConfigs.debugKey
+        }
+
+        release {
+            debuggable false
+            zipAlignEnabled true
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debugKey // TODO update production key
+        }
+    }
+
+    productFlavors {
+        flavorDimensions 'environment'
+
+        beta {
+            dimension 'environment'
+        }
+
+        production {
+            dimension 'environment'
+        }
+    }
+}
+
+dependencies {
+    // Support
+    implementation deps.support.appCompat
+    implementation deps.support.constraintLayout
+}
