@@ -1,4 +1,4 @@
-package net.epictimes.owl.data;
+package net.epictimes.owl.data.api;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +7,8 @@ import com.facebook.stetho.BuildConfig;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import net.epictimes.owl.data.api.Services;
 
 import javax.inject.Singleton;
 
