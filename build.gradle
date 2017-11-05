@@ -20,7 +20,8 @@ buildscript {
             'leakCanary': '1.5.4',
             'mosby': '3.0.4',
             'retrofit': '2.3.0',
-            'permissionsDispatcher': '3.0.1'
+            'permissionsDispatcher': '3.0.1',
+            'room': '1.0.0-rc1'
     ]
 
     ext.deps = [
@@ -62,6 +63,10 @@ buildscript {
             'permissionsDispatcher': [
                     'runtime': "com.github.hotchemi:permissionsdispatcher:${versions.permissionsDispatcher}",
                     'compiler': "com.github.hotchemi:permissionsdispatcher-processor:${versions.permissionsDispatcher}",
+            ],
+            'room': [
+                    'runtime': "android.arch.persistence.room:runtime:${versions.room}",
+                    'compiler': "android.arch.persistence.room:compiler:${versions.room}"
             ],
             'test': [
                     'junit': "junit:junit:4.12",

@@ -1,4 +1,4 @@
-package net.epictimes.owl.data.api;
+package net.epictimes.owl.data.remote;
 
 import net.epictimes.owl.data.model.Tweet;
 

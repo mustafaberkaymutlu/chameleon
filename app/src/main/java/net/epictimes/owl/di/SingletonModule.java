@@ -2,6 +2,7 @@ package net.epictimes.owl.di;
 
 import net.epictimes.owl.OwlApplication;
 import net.epictimes.owl.util.ActivityUtils;
+import net.epictimes.owl.util.AppExecutors;
 
 import javax.inject.Singleton;
 
@@ -14,8 +15,15 @@ public class SingletonModule {
     @IsTablet
     @Singleton
     @Provides
-    static boolean provideIsTablet(OwlApplication owlApplication) {
+    boolean provideIsTablet(OwlApplication owlApplication) {
         return ActivityUtils.isTablet(owlApplication);
     }
+
+    @Singleton
+    @Provides
+    AppExecutors provideAppExecutors() {
+        return new AppExecutors();
+    }
+
 
 }

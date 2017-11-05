@@ -25,6 +25,12 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
         versionName versions.versionName
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     signingConfigs {
@@ -93,6 +99,10 @@ dependencies {
     implementation deps.retrofit.gson
     implementation deps.okHttpLogginInterceptor
     implementation deps.stetho
+
+    // Room
+    implementation deps.room.runtime
+    annotationProcessor deps.room.compiler
 
     // Leak Canary
     betaImplementation deps.leakCanary.real

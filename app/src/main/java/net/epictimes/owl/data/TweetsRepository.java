@@ -66,7 +66,7 @@ public class TweetsRepository implements TweetsDataSource {
         tweetsLocalDataSource.getTweet(tweetId, new GetTweetCallback() {
             @Override
             public void onTweetLoaded(Tweet tweet) {
-                cachedTweets.put(tweet.getIdStr(), tweet);
+                cachedTweets.put(tweet.getTweetId(), tweet);
                 callback.onTweetLoaded(tweet);
             }
 
@@ -75,7 +75,7 @@ public class TweetsRepository implements TweetsDataSource {
                 tweetsRemoteDataSource.getTweet(tweetId, new GetTweetCallback() {
                     @Override
                     public void onTweetLoaded(Tweet tweet) {
-                        cachedTweets.put(tweet.getIdStr(), tweet);
+                        cachedTweets.put(tweet.getTweetId(), tweet);
                         callback.onTweetLoaded(tweet);
                     }
 
@@ -91,7 +91,7 @@ public class TweetsRepository implements TweetsDataSource {
     @Override
     public void saveTweet(@NonNull Tweet tweet) {
         tweetsLocalDataSource.saveTweet(tweet);
-        cachedTweets.put(tweet.getIdStr(), tweet);
+        cachedTweets.put(tweet.getTweetId(), tweet);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class TweetsRepository implements TweetsDataSource {
         cachedTweets.clear();
 
         for (Tweet tweet : tweets) {
-            cachedTweets.put(tweet.getIdStr(), tweet);
+            cachedTweets.put(tweet.getTweetId(), tweet);
         }
 
         isCacheDirty = false;

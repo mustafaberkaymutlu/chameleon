@@ -1,6 +1,6 @@
 package net.epictimes.owl.features.login;
 
-import net.epictimes.owl.data.api.Services;
+import net.epictimes.owl.data.remote.Services;
 import net.epictimes.owl.di.FragmentScoped;
 
 import dagger.Module;

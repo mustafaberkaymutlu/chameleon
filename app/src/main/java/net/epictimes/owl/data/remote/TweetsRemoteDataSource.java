@@ -3,7 +3,6 @@ package net.epictimes.owl.data.remote;
 import android.support.annotation.NonNull;
 
 import net.epictimes.owl.data.TweetsDataSource;
-import net.epictimes.owl.data.api.Services;
 import net.epictimes.owl.data.model.Tweet;
 
 public class TweetsRemoteDataSource implements TweetsDataSource {

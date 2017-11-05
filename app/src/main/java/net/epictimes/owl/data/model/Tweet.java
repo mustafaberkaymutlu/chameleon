@@ -1,10 +1,46 @@
 package net.epictimes.owl.data.model;
 
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
+@Entity(tableName = "tweets"
+//        foreignKeys = {
+//                @ForeignKey(entity = User.class,
+//                        parentColumns = "userId",
+//                        childColumns = "user",
+//                        onDelete = ForeignKey.CASCADE)
+//        }
+)
 public class Tweet {
+
+    /**
+     * The string representation of the unique identifier for this Tweet. Implementations should use
+     * this rather than the large integer in id
+     */
+    @NonNull
+    @PrimaryKey
+    @SerializedName("id_str")
+    private String tweetId;
+
+    /**
+     * The user who posted this Tweet. Perspectival attributes embedded within this object are
+     * unreliable. See Why are embedded objects stale or inaccurate?.
+     */
+    @Embedded
+    @SerializedName("user")
+    private User user;
+
+    /**
+     * The actual UTF-8 text of the status update. See twitter-text for details on what is currently
+     * considered valid characters.
+     */
+    @SerializedName(value = "text", alternate = {"full_text"})
+    private String text;
 
     /**
      * UTC time when this Tweet was created.
@@ -26,33 +62,6 @@ public class Tweet {
     @SerializedName("favorited")
     private boolean favorited;
 
-    @SerializedName("id")
-    private long id;
-
-    @SerializedName("id_str")
-    private String idStr;
-
-    /**
-     * This field only surfaces when the Tweet is a quote Tweet. This field contains the
-     * integer value Tweet ID of the quoted Tweet.
-     */
-    @SerializedName("quoted_status_id")
-    private long quotedStatusId;
-
-    /**
-     * This field only surfaces when the Tweet is a quote Tweet. This is the string representation
-     * Tweet ID of the quoted Tweet.
-     */
-    @SerializedName("quoted_status_id_str")
-    private String quotedStatusIdStr;
-
-    /**
-     * This field only surfaces when the Tweet is a quote Tweet. This attribute contains the
-     * Tweet object of the original Tweet that was quoted.
-     */
-    @SerializedName("quoted_status")
-    private Tweet quotedStatus;
-
     /**
      * Number of times this Tweet has been retweeted. This field is no longer capped at 99 and will
      * not turn into a String for "100+"
@@ -66,126 +75,68 @@ public class Tweet {
     @SerializedName("retweeted")
     private boolean retweeted;
 
-    /**
-     * Users can amplify the broadcast of tweets authored by other users by retweeting. Retweets can
-     * be distinguished from typical Tweets by the existence of a retweeted_status attribute. This
-     * attribute contains a representation of the original Tweet that was retweeted. Note that
-     * retweets of retweets do not show representations of the intermediary retweet, but only the
-     * original tweet. (Users can also unretweet a retweet they created by deleting their retweet.)
-     */
-    @SerializedName("retweeted_status")
-    private Tweet retweetedStatus;
-
-    /**
-     * The actual UTF-8 text of the status update. See twitter-text for details on what is currently
-     * considered valid characters.
-     */
-    @SerializedName(value = "text", alternate = {"full_text"})
-    private String text;
-
-
-    /**
-     * An array of two unicode code point indices, identifying the inclusive start and exclusive end
-     * of the displayable content of the Tweet.
-     */
-    @SerializedName("display_text_range")
-    private List<Integer> displayTextRange;
-
-    /**
-     * Indicates whether the value of the text parameter was truncated, for example, as a result of
-     * a retweet exceeding the 140 character Tweet length. Truncated text will end in ellipsis, like
-     * this ... Since Twitter now rejects long Tweets vs truncating them, the large majority of
-     * Tweets will have this set to false.
-     * Note that while native retweets may have their toplevel text property shortened, the original
-     * text will be available under the retweeted_status object and the truncated parameter will be
-     * set to the value of the original status (in most cases, false).
-     */
-    @SerializedName("truncated")
-    private boolean truncated;
-
-    /**
-     * The user who posted this Tweet. Perspectival attributes embedded within this object are
-     * unreliable. See Why are embedded objects stale or inaccurate?.
-     */
-    @SerializedName("user")
-    private User user;
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
-
-        if (!(o instanceof Tweet)) {
-            return false;
-        }
-
-        final Tweet other = (Tweet) o;
-        return this.id == other.id;
+    @NonNull
+    public String getTweetId() {
+        return tweetId;
     }
 
-    @Override
-    public int hashCode() {
-        return (int) this.id;
+    public void setTweetId(@NonNull String tweetId) {
+        this.tweetId = tweetId;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public User getUser() {
+        return user;
     }
 
-    public Integer getFavoriteCount() {
-        return favoriteCount;
-    }
-
-    public boolean isFavorited() {
-        return favorited;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getIdStr() {
-        return idStr;
-    }
-
-    public long getQuotedStatusId() {
-        return quotedStatusId;
-    }
-
-    public String getQuotedStatusIdStr() {
-        return quotedStatusIdStr;
-    }
-
-    public Tweet getQuotedStatus() {
-        return quotedStatus;
-    }
-
-    public int getRetweetCount() {
-        return retweetCount;
-    }
-
-    public boolean isRetweeted() {
-        return retweeted;
-    }
-
-    public Tweet getRetweetedStatus() {
-        return retweetedStatus;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getText() {
         return text;
     }
 
-    public List<Integer> getDisplayTextRange() {
-        return displayTextRange;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public boolean isTruncated() {
-        return truncated;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public User getUser() {
-        return user;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Integer getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    public void setFavoriteCount(Integer favoriteCount) {
+        this.favoriteCount = favoriteCount;
+    }
+
+    public boolean isFavorited() {
+        return favorited;
+    }
+
+    public void setFavorited(boolean favorited) {
+        this.favorited = favorited;
+    }
+
+    public int getRetweetCount() {
+        return retweetCount;
+    }
+
+    public void setRetweetCount(int retweetCount) {
+        this.retweetCount = retweetCount;
+    }
+
+    public boolean isRetweeted() {
+        return retweeted;
+    }
+
+    public void setRetweeted(boolean retweeted) {
+        this.retweeted = retweeted;
     }
 }
