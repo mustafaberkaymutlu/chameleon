@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import net.epictimes.owl.R;
 import net.epictimes.owl.di.IsTablet;
 import net.epictimes.owl.features.detail.TweetDetailFragment;
-import net.epictimes.owl.features.login.LoginActivity;
 
 import javax.inject.Inject;
 
@@ -46,8 +45,6 @@ public class TimelineActivity extends AppCompatActivity implements HasSupportFra
         setContentView(R.layout.activity_timeline);
 
         setupActionBar();
-
-        checkUserSession();
 
         if (savedInstanceState != null) {
             tweetId = savedInstanceState.getString(CURRENT_TASK_ID_KEY);
@@ -120,13 +117,6 @@ public class TimelineActivity extends AppCompatActivity implements HasSupportFra
         }
 
         return tweetDetailFragment;
-    }
-
-    private void checkUserSession() {
-        // TODO add user session check
-        if (false) {
-            startActivity(LoginActivity.newIntent(this));
-        }
     }
 
     @Override

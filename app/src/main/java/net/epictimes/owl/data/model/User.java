@@ -4,6 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "users")
@@ -39,6 +40,9 @@ public class User {
     @SerializedName("profile_image_url_https")
     private String profileImageUrlHttps;
 
+    @Expose(serialize = false, deserialize = false)
+    private boolean isLoggedInUser;
+
     @NonNull
     public String getUserId() {
         return userId;
@@ -70,5 +74,13 @@ public class User {
 
     public void setProfileImageUrlHttps(String profileImageUrlHttps) {
         this.profileImageUrlHttps = profileImageUrlHttps;
+    }
+
+    public boolean isLoggedInUser() {
+        return isLoggedInUser;
+    }
+
+    public void setLoggedInUser(boolean loggedInUser) {
+        isLoggedInUser = loggedInUser;
     }
 }

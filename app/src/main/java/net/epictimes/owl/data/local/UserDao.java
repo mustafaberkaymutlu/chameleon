@@ -18,6 +18,12 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE userId = :userId")
     User getUserById(String userId);
 
+    @Query("SELECT * FROM users WHERE isLoggedInUser = 'true'")
+    User getLoggedInUser();
+
+    @Query("SELECT COUNT(*) FROM users WHERE isLoggedInUser = 'true'")
+    boolean isUserLoggedIn();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(User user);
 

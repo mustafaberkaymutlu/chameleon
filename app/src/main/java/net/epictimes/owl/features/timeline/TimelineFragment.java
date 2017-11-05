@@ -2,7 +2,9 @@ package net.epictimes.owl.features.timeline;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 
 import net.epictimes.owl.R;
 import net.epictimes.owl.data.model.Tweet;
+import net.epictimes.owl.features.login.LoginActivity;
 
 import java.util.List;
 
@@ -38,6 +41,13 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        presenter.checkUserSessionValidity();
+    }
+
+    @Override
     public void showTweetDetailUi(String tweetId) {
 
     }
@@ -55,6 +65,13 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     @Override
     public void showLoadingTimelineError() {
 
+    }
+
+    @Override
+    public void goToLogin() {
+        final Intent loginIntent = LoginActivity.newIntent(getContext());
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(loginIntent);
     }
 
     @Override

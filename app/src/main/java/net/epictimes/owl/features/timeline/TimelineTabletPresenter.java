@@ -33,6 +33,11 @@ public class TimelineTabletPresenter implements TimelineContract.Presenter, Twee
     }
 
     @Override
+    public void checkUserSessionValidity() {
+        timelinePresenter.checkUserSessionValidity();
+    }
+
+    @Override
     public void dropView() {
         timelinePresenter.dropView();
         tweetDetailPresenter.dropView();

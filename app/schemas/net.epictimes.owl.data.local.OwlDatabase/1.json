@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "33909869bbb47739da0e40868d2ef63d",
+    "identityHash": "ab10db83f11f47ed969705745f3aa055",
     "entities": [
       {
         "tableName": "users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `name` TEXT, `screenName` TEXT, `profileImageUrlHttps` TEXT, PRIMARY KEY(`userId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `name` TEXT, `screenName` TEXT, `profileImageUrlHttps` TEXT, `isLoggedInUser` INTEGER NOT NULL, PRIMARY KEY(`userId`))",
         "fields": [
           {
             "fieldPath": "userId",
@@ -31,6 +31,12 @@
             "columnName": "profileImageUrlHttps",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "isLoggedInUser",
+            "columnName": "isLoggedInUser",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -44,7 +50,7 @@
       },
       {
         "tableName": "tweets",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tweetId` TEXT NOT NULL, `text` TEXT, `createdAt` TEXT, `favoriteCount` INTEGER, `favorited` INTEGER NOT NULL, `retweetCount` INTEGER NOT NULL, `retweeted` INTEGER NOT NULL, `userId` TEXT, `name` TEXT, `screenName` TEXT, `profileImageUrlHttps` TEXT, PRIMARY KEY(`tweetId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tweetId` TEXT NOT NULL, `text` TEXT, `createdAt` TEXT, `favoriteCount` INTEGER, `favorited` INTEGER NOT NULL, `retweetCount` INTEGER NOT NULL, `retweeted` INTEGER NOT NULL, `userId` TEXT, `name` TEXT, `screenName` TEXT, `profileImageUrlHttps` TEXT, `isLoggedInUser` INTEGER, PRIMARY KEY(`tweetId`))",
         "fields": [
           {
             "fieldPath": "tweetId",
@@ -111,6 +117,12 @@
             "columnName": "profileImageUrlHttps",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "user.isLoggedInUser",
+            "columnName": "isLoggedInUser",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -125,7 +137,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"33909869bbb47739da0e40868d2ef63d\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ab10db83f11f47ed969705745f3aa055\")"
     ]
   }
 }

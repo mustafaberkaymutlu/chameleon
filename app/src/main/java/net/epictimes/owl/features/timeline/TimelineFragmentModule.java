@@ -1,6 +1,7 @@
 package net.epictimes.owl.features.timeline;
 
 import net.epictimes.owl.data.TweetsRepository;
+import net.epictimes.owl.data.UsersRepository;
 import net.epictimes.owl.di.FragmentScoped;
 import net.epictimes.owl.di.IsTablet;
 
@@ -14,8 +15,9 @@ public class TimelineFragmentModule {
     @FragmentScoped
     @Provides
     TimelinePresenter providePresenterImpl(TweetsRepository tweetsRepository,
+                                           UsersRepository usersRepository,
                                            TimelineFragment timelineFragment) {
-        return new TimelinePresenter(tweetsRepository, timelineFragment);
+        return new TimelinePresenter(timelineFragment, tweetsRepository, usersRepository);
     }
 
     @FragmentScoped

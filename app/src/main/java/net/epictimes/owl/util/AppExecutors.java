@@ -25,15 +25,15 @@ public class AppExecutors {
                 new MainThreadExecutor());
     }
 
-    public Executor getDiskIoExecutor() {
+    public Executor diskIo() {
         return diskIo;
     }
 
-    public Executor getNetworkIoExecutor() {
+    public Executor networkIo() {
         return networkIo;
     }
 
-    public Executor getMainThreadExecutor() {
+    public Executor mainThread() {
         return mainThread;
     }
 

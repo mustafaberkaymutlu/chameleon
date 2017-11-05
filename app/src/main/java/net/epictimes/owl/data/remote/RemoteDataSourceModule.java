@@ -8,6 +8,8 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import net.epictimes.owl.data.TweetsDataSource;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -19,6 +21,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RemoteDataSourceModule {
+
+    @RemoteDataSource
+    @Singleton
+    @Provides
+    TweetsDataSource provideRemoteDataSource(Services services) {
+        return new TweetsRemoteDataSource(services);
+    }
 
     @Singleton
     @Provides

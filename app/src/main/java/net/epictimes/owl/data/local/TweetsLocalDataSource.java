@@ -19,10 +19,10 @@ public class TweetsLocalDataSource implements TweetsDataSource {
 
     @Override
     public void getTimeline(@NonNull LoadTimelineCallback callback) {
-        appExecutors.getDiskIoExecutor().execute(() -> {
+        appExecutors.diskIo().execute(() -> {
             final List<Tweet> tweets = tweetDao.getTweets();
 
-            appExecutors.getMainThreadExecutor().execute(() -> {
+            appExecutors.mainThread().execute(() -> {
                 if (tweets.isEmpty()) {
                     callback.onDataNotAvailable();
                 } else {
@@ -34,10 +34,10 @@ public class TweetsLocalDataSource implements TweetsDataSource {
 
     @Override
     public void getTweet(@NonNull String tweetId, @NonNull GetTweetCallback callback) {
-        appExecutors.getDiskIoExecutor().execute(() -> {
+        appExecutors.diskIo().execute(() -> {
             final Tweet tweet = tweetDao.getTweetById(tweetId);
 
-            appExecutors.getMainThreadExecutor().execute(() -> {
+            appExecutors.mainThread().execute(() -> {
                 if (tweet != null) {
                     callback.onTweetLoaded(tweet);
                 } else {
@@ -49,17 +49,17 @@ public class TweetsLocalDataSource implements TweetsDataSource {
 
     @Override
     public void saveTweet(@NonNull Tweet tweet) {
-        appExecutors.getDiskIoExecutor().execute(() -> tweetDao.insertTweet(tweet));
+        appExecutors.diskIo().execute(() -> tweetDao.insertTweet(tweet));
     }
 
     @Override
     public void deleteTweet(@NonNull String tweetIdStr) {
-        appExecutors.getDiskIoExecutor().execute(() -> tweetDao.deleteTweetById(tweetIdStr));
+        appExecutors.diskIo().execute(() -> tweetDao.deleteTweetById(tweetIdStr));
     }
 
     @Override
     public void deleteAllTweets() {
-        appExecutors.getDiskIoExecutor().execute(tweetDao::deleteAllTweets);
+        appExecutors.diskIo().execute(tweetDao::deleteAllTweets);
     }
 
     @Override
