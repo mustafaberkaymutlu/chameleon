@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".features.main.MainActivity">
+        <activity android:name=".features.timeline.TimelineActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +21,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".features.login.LoginActivity" />
+
+        <activity android:name=".features.detail.TweetDetailActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="7e616bdbc7eee9ab211f5dbea00eba1be1307351" />
+
     </application>
+
 </manifest>

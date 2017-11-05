@@ -7,9 +7,9 @@ import com.crashlytics.android.Crashlytics;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import net.epictimes.owl.data.ApiModule;
 import net.epictimes.owl.di.DaggerSingletonComponent;
 import net.epictimes.owl.di.SingletonComponent;
+import net.epictimes.owl.util.ReleaseLoggingTree;
 
 import javax.inject.Inject;
 
@@ -44,7 +44,6 @@ public class OwlApplication extends Application implements HasActivityInjector {
 
     private void initSingletonComponent() {
         singletonComponent = DaggerSingletonComponent.builder()
-                .apiModule(new ApiModule())
                 .application(this)
                 .build();
 

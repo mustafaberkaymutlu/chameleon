@@ -78,6 +78,7 @@ dependencies {
     // Support
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
+    implementation deps.support.design
 
     // Dagger
     implementation deps.dagger.runtime
