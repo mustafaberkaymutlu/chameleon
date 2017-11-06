@@ -47,7 +47,8 @@ public class RemoteDataSourceModule {
 
     @Singleton
     @Provides
-    OkHttpClient provideOkHttpClient(@Nullable StethoInterceptor stethoInterceptor,
+    OkHttpClient provideOkHttpClient(@NonNull AuthInterceptor authInterceptor,
+                                     @Nullable StethoInterceptor stethoInterceptor,
                                      @Nullable HttpLoggingInterceptor httpLoggingInterceptor) {
         final OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 
@@ -67,6 +68,12 @@ public class RemoteDataSourceModule {
     @Provides
     Gson provideGson() {
         return new GsonBuilder().create();
+    }
+
+    @Singleton
+    @Provides
+    AuthInterceptor provideAuthInterceptor() {
+        return new AuthInterceptor();
     }
 
     @Singleton
