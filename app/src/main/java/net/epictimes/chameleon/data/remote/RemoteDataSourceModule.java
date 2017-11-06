@@ -3,11 +3,11 @@ package net.epictimes.chameleon.data.remote;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.facebook.stetho.BuildConfig;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import net.epictimes.chameleon.BuildConfig;
 import net.epictimes.chameleon.data.PhotoDataSource;
 
 import javax.inject.Singleton;
@@ -53,7 +53,7 @@ public class RemoteDataSourceModule {
         final OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 
         if (stethoInterceptor != null) {
-            okHttpClientBuilder.addInterceptor(stethoInterceptor);
+            okHttpClientBuilder.addNetworkInterceptor(stethoInterceptor);
         }
 
         if (httpLoggingInterceptor != null) {

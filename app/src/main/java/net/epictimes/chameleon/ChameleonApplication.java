@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -36,6 +37,8 @@ public class ChameleonApplication extends Application implements HasActivityInje
         refWatcher = LeakCanary.install(this);
 
         Fabric.with(this, new Crashlytics());
+
+        Stetho.initializeWithDefaults(this);
 
         initTimber();
 
