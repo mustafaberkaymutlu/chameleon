@@ -20,7 +20,7 @@ android {
     buildToolsVersion versions.buildTools
 
     defaultConfig {
-        applicationId "net.epictimes.owl"
+        applicationId "net.epictimes.chameleon"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
