@@ -100,6 +100,10 @@ dependencies {
     implementation deps.okHttpLogginInterceptor
     implementation deps.stetho
 
+    // Glide
+    implementation deps.glide.runtime
+    annotationProcessor deps.glide.compiler
+
     // Room
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
