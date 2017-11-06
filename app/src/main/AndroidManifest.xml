@@ -21,8 +21,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.epictimes.chameleon.features.login.LoginActivity" />
-
         <activity android:name="net.epictimes.chameleon.features.detail.TweetDetailActivity" />
 
         <meta-data

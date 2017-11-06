@@ -2,9 +2,7 @@ package net.epictimes.chameleon.features.timeline;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 
 import net.epictimes.chameleon.R;
 import net.epictimes.chameleon.data.model.Tweet;
-import net.epictimes.chameleon.features.login.LoginActivity;
 
 import java.util.List;
 
@@ -41,13 +38,6 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        presenter.checkUserSessionValidity();
-    }
-
-    @Override
     public void showTweetDetailUi(String tweetId) {
 
     }
@@ -65,13 +55,6 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     @Override
     public void showLoadingTimelineError() {
 
-    }
-
-    @Override
-    public void goToLogin() {
-        final Intent loginIntent = LoginActivity.newIntent(getContext());
-        loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(loginIntent);
     }
 
     @Override

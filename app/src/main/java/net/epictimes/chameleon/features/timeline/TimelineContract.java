@@ -20,8 +20,6 @@ public interface TimelineContract {
 
         void showLoadingTimelineError();
 
-        void goToLogin();
-
         boolean isActive();
 
     }
@@ -34,8 +32,6 @@ public interface TimelineContract {
         void loadTimeline(boolean forceUpdate);
 
         void openTweetDetails(@NonNull Tweet requestedTweet);
-
-        void checkUserSessionValidity();
 
     }
 

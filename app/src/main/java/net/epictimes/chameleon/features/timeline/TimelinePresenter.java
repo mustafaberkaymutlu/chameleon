@@ -31,15 +31,6 @@ public class TimelinePresenter implements TimelineContract.Presenter {
     }
 
     @Override
-    public void checkUserSessionValidity() {
-        usersRepository.isUserLoggedIn(isUserLoggedIn -> {
-            if (!isUserLoggedIn && view != null) {
-                view.goToLogin();
-            }
-        });
-    }
-
-    @Override
     public void dropView() {
         view = null;
     }

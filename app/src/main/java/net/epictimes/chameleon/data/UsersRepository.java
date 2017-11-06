@@ -11,13 +11,4 @@ public class UsersRepository implements UsersDataSource {
         this.usersLocalDataSource = usersLocalDataSource;
     }
 
-    @Override
-    public void getLoggedInUser(@NonNull GetLoggedInUserCallback callback) {
-        usersLocalDataSource.getLoggedInUser(callback);
-    }
-
-    @Override
-    public void isUserLoggedIn(@NonNull IsUserLoggedInCallback callback) {
-        usersLocalDataSource.isUserLoggedIn(callback);
-    }
 }
