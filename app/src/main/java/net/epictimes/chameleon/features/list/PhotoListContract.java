@@ -1,4 +1,4 @@
-package net.epictimes.chameleon.features.timeline;
+package net.epictimes.chameleon.features.list;
 
 import android.support.annotation.NonNull;
 
@@ -8,7 +8,7 @@ import net.epictimes.chameleon.features.BaseView;
 
 import java.util.List;
 
-public interface TimelineContract {
+public interface PhotoListContract {
 
     interface View extends BaseView<Presenter> {
 

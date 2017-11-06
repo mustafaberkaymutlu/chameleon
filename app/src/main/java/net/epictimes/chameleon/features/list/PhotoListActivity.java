@@ -1,4 +1,4 @@
-package net.epictimes.chameleon.features.timeline;
+package net.epictimes.chameleon.features.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 
 import net.epictimes.chameleon.R;
 import net.epictimes.chameleon.di.IsTablet;
-import net.epictimes.chameleon.features.detail.TweetDetailFragment;
+import net.epictimes.chameleon.features.detail.PhotoDetailFragment;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class TimelineActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+public class PhotoListActivity extends AppCompatActivity implements HasSupportFragmentInjector {
     private static final String CURRENT_TASK_ID_KEY = "key_current_task_i̇d";
 
     @Inject
@@ -35,7 +35,7 @@ public class TimelineActivity extends AppCompatActivity implements HasSupportFra
     private String tweetId;
 
     public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, TimelineActivity.class);
+        return new Intent(context, PhotoListActivity.class);
     }
 
     @Override
@@ -72,51 +72,51 @@ public class TimelineActivity extends AppCompatActivity implements HasSupportFra
     }
 
     private void attachTabletFragments() {
-        final TimelineFragment timelineFragment = findOrCreateTimelineFragment(R.id.contentFrame_list);
-        final TweetDetailFragment tweetDetailFragment = findOrCreateTweetDetailFragmentForTablet();
+        final PhotoListFragment photoListFragment = findOrCreateTimelineFragment(R.id.contentFrame_list);
+        final PhotoDetailFragment photoDetailFragment = findOrCreateTweetDetailFragmentForTablet();
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contentFrame_list, timelineFragment)
+                .add(R.id.contentFrame_list, photoListFragment)
                 .commit();
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contentFrame_detail, tweetDetailFragment)
+                .add(R.id.contentFrame_detail, photoDetailFragment)
                 .commit();
     }
 
     private void attachPhoneFragments() {
-        final TimelineFragment timelineFragment = findOrCreateTimelineFragment(R.id.contentFrame);
+        final PhotoListFragment photoListFragment = findOrCreateTimelineFragment(R.id.contentFrame);
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contentFrame, timelineFragment)
+                .add(R.id.contentFrame, photoListFragment)
                 .commit();
     }
 
     @NonNull
-    private TimelineFragment findOrCreateTimelineFragment(@IdRes int fragmentId) {
-        TimelineFragment timelineFragment = (TimelineFragment) getSupportFragmentManager()
+    private PhotoListFragment findOrCreateTimelineFragment(@IdRes int fragmentId) {
+        PhotoListFragment photoListFragment = (PhotoListFragment) getSupportFragmentManager()
                 .findFragmentById(fragmentId);
 
-        if (timelineFragment == null) {
-            timelineFragment = TimelineFragment.newInstance();
+        if (photoListFragment == null) {
+            photoListFragment = PhotoListFragment.newInstance();
         }
 
-        return timelineFragment;
+        return photoListFragment;
     }
 
     @NonNull
-    private TweetDetailFragment findOrCreateTweetDetailFragmentForTablet() {
-        TweetDetailFragment tweetDetailFragment = (TweetDetailFragment) getSupportFragmentManager()
+    private PhotoDetailFragment findOrCreateTweetDetailFragmentForTablet() {
+        PhotoDetailFragment photoDetailFragment = (PhotoDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.contentFrame_detail);
 
-        if (tweetDetailFragment == null) {
-            tweetDetailFragment = TweetDetailFragment.newInstance();
+        if (photoDetailFragment == null) {
+            photoDetailFragment = PhotoDetailFragment.newInstance();
         }
 
-        return tweetDetailFragment;
+        return photoDetailFragment;
     }
 
     @Override

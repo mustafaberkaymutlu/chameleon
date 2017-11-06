@@ -1,9 +1,9 @@
 package net.epictimes.chameleon.di;
 
-import net.epictimes.chameleon.features.detail.TweetDetailActivity;
-import net.epictimes.chameleon.features.detail.TweetDetailActivityModule;
-import net.epictimes.chameleon.features.timeline.TimelineActivity;
-import net.epictimes.chameleon.features.timeline.TimelineActivityModule;
+import net.epictimes.chameleon.features.detail.PhotoDetailActivity;
+import net.epictimes.chameleon.features.detail.PhotoDetailActivityModule;
+import net.epictimes.chameleon.features.list.PhotoListActivity;
+import net.epictimes.chameleon.features.list.PhotoListActivityModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -12,11 +12,11 @@ import dagger.android.ContributesAndroidInjector;
 abstract class ActivityBuilderModule {
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = {TimelineActivityModule.class})
-    abstract TimelineActivity contributeMainActivityInjector();
+    @ContributesAndroidInjector(modules = {PhotoListActivityModule.class})
+    abstract PhotoListActivity contributeMainActivityInjector();
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = {TweetDetailActivityModule.class})
-    abstract TweetDetailActivity contributeTweetDetailActivityInjector();
+    @ContributesAndroidInjector(modules = {PhotoDetailActivityModule.class})
+    abstract PhotoDetailActivity contributeTweetDetailActivityInjector();
 
 }

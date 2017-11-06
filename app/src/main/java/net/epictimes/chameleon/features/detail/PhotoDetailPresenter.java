@@ -2,13 +2,13 @@ package net.epictimes.chameleon.features.detail;
 
 import net.epictimes.chameleon.data.TweetsRepository;
 
-public class TweetDetailPresenter implements TweetDetailContract.Presenter {
+public class PhotoDetailPresenter implements PhotoDetailContract.Presenter {
     private final TweetsRepository tweetsRepository;
-    private TweetDetailContract.View view;
+    private PhotoDetailContract.View view;
     private final String tweetId;
 
-    public TweetDetailPresenter(TweetsRepository tweetsRepository,
-                                TweetDetailContract.View view) {
+    public PhotoDetailPresenter(TweetsRepository tweetsRepository,
+                                PhotoDetailContract.View view) {
         this.tweetsRepository = tweetsRepository;
         this.tweetId = ""; // TODO fix me
         this.view = view;

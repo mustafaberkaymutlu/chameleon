@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="net.epictimes.chameleon.features.timeline.TimelineActivity">
+        <activity android:name="net.epictimes.chameleon.features.list.PhotoListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.epictimes.chameleon.features.detail.TweetDetailActivity" />
+        <activity android:name="net.epictimes.chameleon.features.detail.PhotoDetailActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

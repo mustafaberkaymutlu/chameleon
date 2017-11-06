@@ -14,13 +14,13 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public class TweetDetailFragment extends Fragment implements TweetDetailContract.View {
+public class PhotoDetailFragment extends Fragment implements PhotoDetailContract.View {
 
     @Inject
-    TweetDetailContract.Presenter presenter;
+    PhotoDetailContract.Presenter presenter;
 
-    public static TweetDetailFragment newInstance() {
-        return new TweetDetailFragment();
+    public static PhotoDetailFragment newInstance() {
+        return new PhotoDetailFragment();
     }
 
     @Override

@@ -3,7 +3,7 @@ package net.epictimes.chameleon.features.detail;
 import net.epictimes.chameleon.features.BasePresenter;
 import net.epictimes.chameleon.features.BaseView;
 
-public interface TweetDetailContract {
+public interface PhotoDetailContract {
 
     interface View extends BaseView<Presenter> {
 

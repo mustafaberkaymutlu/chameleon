@@ -16,13 +16,13 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class TweetDetailActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+public class PhotoDetailActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
     public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, TweetDetailActivity.class);
+        return new Intent(context, PhotoDetailActivity.class);
     }
 
     @Override

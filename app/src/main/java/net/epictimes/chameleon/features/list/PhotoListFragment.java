@@ -1,4 +1,4 @@
-package net.epictimes.chameleon.features.timeline;
+package net.epictimes.chameleon.features.list;
 
 
 import android.content.Context;
@@ -17,13 +17,13 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public class TimelineFragment extends Fragment implements TimelineContract.View {
+public class PhotoListFragment extends Fragment implements PhotoListContract.View {
 
     @Inject
-    TimelineContract.Presenter presenter;
+    PhotoListContract.Presenter presenter;
 
-    public static TimelineFragment newInstance() {
-        return new TimelineFragment();
+    public static PhotoListFragment newInstance() {
+        return new PhotoListFragment();
     }
 
     @Override
