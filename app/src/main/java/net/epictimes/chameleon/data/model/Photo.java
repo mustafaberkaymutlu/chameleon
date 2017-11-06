@@ -55,7 +55,7 @@ public class Photo {
     private Integer timesViewed;
 
     @SerializedName("rating")
-    private Integer rating;
+    private Double rating;
 
     @SerializedName("status")
     private Integer status;
@@ -103,7 +103,7 @@ public class Photo {
     private Integer salesCount;
 
     @SerializedName("highest_rating")
-    private Integer highestRating;
+    private Double highestRating;
 
     @SerializedName("license_type")
     private Integer licenseType;
@@ -248,11 +248,11 @@ public class Photo {
         this.timesViewed = timesViewed;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -376,11 +376,11 @@ public class Photo {
         this.salesCount = salesCount;
     }
 
-    public Integer getHighestRating() {
+    public Double getHighestRating() {
         return highestRating;
     }
 
-    public void setHighestRating(Integer highestRating) {
+    public void setHighestRating(Double highestRating) {
         this.highestRating = highestRating;
     }
 
