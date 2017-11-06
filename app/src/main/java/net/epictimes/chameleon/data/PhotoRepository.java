@@ -36,7 +36,7 @@ public class PhotoRepository implements PhotoDataSource {
         }
 
         if (isCacheDirty) {
-            getTasksFromRemoteDataSource(callback);
+            getPhotosFromRemoteDataSource(callback);
         } else {
             photoRemoteDataSource.getPhotos(new LoadPhotosCallback() {
                 @Override
@@ -48,7 +48,7 @@ public class PhotoRepository implements PhotoDataSource {
 
                 @Override
                 public void onPhotosNotAvailable() {
-                    getTasksFromRemoteDataSource(callback);
+                    getPhotosFromRemoteDataSource(callback);
                 }
             });
         }
@@ -111,7 +111,7 @@ public class PhotoRepository implements PhotoDataSource {
         isCacheDirty = true;
     }
 
-    private void getTasksFromRemoteDataSource(@NonNull final LoadPhotosCallback callback) {
+    private void getPhotosFromRemoteDataSource(@NonNull final LoadPhotosCallback callback) {
         photoRemoteDataSource.getPhotos(new LoadPhotosCallback() {
             @Override
             public void onPhotosLoaded(List<Photo> photos) {

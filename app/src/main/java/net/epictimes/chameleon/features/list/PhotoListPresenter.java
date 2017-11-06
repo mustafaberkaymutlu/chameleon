@@ -2,9 +2,12 @@ package net.epictimes.chameleon.features.list;
 
 import android.support.annotation.NonNull;
 
+import net.epictimes.chameleon.data.PhotoDataSource;
 import net.epictimes.chameleon.data.PhotoRepository;
 import net.epictimes.chameleon.data.UserRepository;
 import net.epictimes.chameleon.data.model.Photo;
+
+import java.util.List;
 
 public class PhotoListPresenter implements PhotoListContract.Presenter {
 
@@ -22,7 +25,21 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
 
     @Override
     public void loadPhotos(boolean forceUpdate) {
+        photoRepository.getPhotos(new PhotoDataSource.LoadPhotosCallback() {
+            @Override
+            public void onPhotosLoaded(List<Photo> photos) {
+                if (view != null) {
+                    view.showPhotos(photos);
+                }
+            }
 
+            @Override
+            public void onPhotosNotAvailable() {
+                if (view != null) {
+                    view.showLoadingPhotosError();
+                }
+            }
+        });
     }
 
     @Override
