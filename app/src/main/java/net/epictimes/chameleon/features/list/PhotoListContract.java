@@ -16,8 +16,6 @@ public interface PhotoListContract {
 
         void showPhotos(List<Photo> photos);
 
-        void showNoPhotos();
-
         void showLoadingPhotosError();
 
         boolean isActive();
