@@ -13,10 +13,10 @@ abstract class ActivityBuilderModule {
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = {PhotoListActivityModule.class})
-    abstract PhotoListActivity contributeMainActivityInjector();
+    abstract PhotoListActivity contributePhotoListActivityInjector();
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = {PhotoDetailActivityModule.class})
-    abstract PhotoDetailActivity contributeTweetDetailActivityInjector();
+    abstract PhotoDetailActivity contributePhotoDetailActivityInjector();
 
 }

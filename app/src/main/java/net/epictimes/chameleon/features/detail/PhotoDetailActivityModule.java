@@ -13,11 +13,11 @@ public abstract class PhotoDetailActivityModule {
 
     @FragmentScoped
     @ContributesAndroidInjector(modules = PhotoDetailFragmentModule.class)
-    abstract PhotoDetailFragment contributeTweetDetailFragmentInjector();
+    abstract PhotoDetailFragment contributePhotoDetailFragmentInjector();
 
     @ActivityScoped
     @Provides
-    static PhotoListTabletPresenter provideTimelineTabletPresenter() {
+    static PhotoListTabletPresenter providePhotoListTabletPresenter() {
         // TODO this should not be called, can be removed
         return new PhotoListTabletPresenter();
     }

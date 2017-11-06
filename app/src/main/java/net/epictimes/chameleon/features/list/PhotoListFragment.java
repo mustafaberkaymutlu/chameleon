@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.epictimes.chameleon.R;
-import net.epictimes.chameleon.data.model.Tweet;
+import net.epictimes.chameleon.data.model.Photo;
 
 import java.util.List;
 
@@ -34,26 +34,26 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_timeline, container, false);
+        return inflater.inflate(R.layout.fragment_photo_list, container, false);
     }
 
     @Override
-    public void showTweetDetailUi(String tweetId) {
-
-    }
-
-    @Override
-    public void showTweets(List<Tweet> tweets) {
+    public void showPhotoDetailUi(Integer photoId) {
 
     }
 
     @Override
-    public void showNoTweets() {
+    public void showPhotos(List<Photo> photos) {
 
     }
 
     @Override
-    public void showLoadingTimelineError() {
+    public void showNoPhotos() {
+
+    }
+
+    @Override
+    public void showLoadingPhotosError() {
 
     }
 

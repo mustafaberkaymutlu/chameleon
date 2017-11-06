@@ -3,8 +3,8 @@ package net.epictimes.chameleon.data.local;
 import android.arch.persistence.room.Room;
 
 import net.epictimes.chameleon.ChameleonApplication;
-import net.epictimes.chameleon.data.TweetsDataSource;
-import net.epictimes.chameleon.data.UsersDataSource;
+import net.epictimes.chameleon.data.PhotoDataSource;
+import net.epictimes.chameleon.data.UserDataSource;
 import net.epictimes.chameleon.util.AppExecutors;
 
 import javax.inject.Singleton;
@@ -18,15 +18,15 @@ public class LocalDataSourceModule {
     @LocalDataSource
     @Singleton
     @Provides
-    UsersDataSource provideUsersDataSource(UserDao userDao, AppExecutors appExecutors) {
-        return new UsersLocalDataSource(userDao, appExecutors);
+    UserDataSource provideUsersDataSource(UserDao userDao, AppExecutors appExecutors) {
+        return new UserLocalDataSource(userDao, appExecutors);
     }
 
     @LocalDataSource
     @Singleton
     @Provides
-    TweetsDataSource provideLocalDataSource(AppExecutors appExecutors, TweetDao tweetDao) {
-        return new TweetsLocalDataSource(appExecutors, tweetDao);
+    PhotoDataSource provideLocalDataSource(AppExecutors appExecutors, PhotoDao photoDao) {
+        return new PhotoLocalDataSource(appExecutors, photoDao);
     }
 
     @Singleton
@@ -45,8 +45,8 @@ public class LocalDataSourceModule {
 
     @Singleton
     @Provides
-    TweetDao provideTweetDao(ChameleonDatabase chameleonDatabase) {
-        return chameleonDatabase.tweetsDao();
+    PhotoDao providePhotoDao(ChameleonDatabase chameleonDatabase) {
+        return chameleonDatabase.photoDao();
     }
 
 }

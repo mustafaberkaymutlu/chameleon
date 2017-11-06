@@ -13,15 +13,15 @@ public class RepositoryModule {
 
     @Singleton
     @Provides
-    TweetsRepository provideTweetsRepository(@RemoteDataSource TweetsDataSource remoteDataSource,
-                                             @LocalDataSource TweetsDataSource localDataSource) {
-        return new TweetsRepository(remoteDataSource, localDataSource);
+    PhotoRepository providePhotoRepository(@RemoteDataSource PhotoDataSource remoteDataSource,
+                                           @LocalDataSource PhotoDataSource localDataSource) {
+        return new PhotoRepository(remoteDataSource, localDataSource);
     }
 
     @Singleton
     @Provides
-    UsersRepository provideUsersRepository(@LocalDataSource UsersDataSource localDataSource) {
-        return new UsersRepository(localDataSource);
+    UserRepository provideUsersRepository(@LocalDataSource UserDataSource localDataSource) {
+        return new UserRepository(localDataSource);
     }
 
 }

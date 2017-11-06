@@ -2,20 +2,20 @@ package net.epictimes.chameleon.features.list;
 
 import android.support.annotation.NonNull;
 
-import net.epictimes.chameleon.data.model.Tweet;
+import net.epictimes.chameleon.data.model.Photo;
 import net.epictimes.chameleon.features.detail.PhotoDetailContract;
 
 public class PhotoListTabletPresenter implements PhotoListContract.Presenter,
         PhotoDetailContract.Presenter {
-    private PhotoListContract.Presenter timelinePresenter;
-    private PhotoDetailContract.Presenter tweetDetailPresenter;
+    private PhotoListContract.Presenter photoListPresenter;
+    private PhotoDetailContract.Presenter photoDetailPresenter;
 
-    public void setTimelinePresenter(@NonNull PhotoListContract.Presenter timelinePresenter) {
-        this.timelinePresenter = timelinePresenter;
+    public void setPhotoListPresenter(@NonNull PhotoListContract.Presenter photoListPresenter) {
+        this.photoListPresenter = photoListPresenter;
     }
 
-    public void setTweetDetailPresenter(@NonNull PhotoDetailContract.Presenter tweetDetailPresenter) {
-        this.tweetDetailPresenter = tweetDetailPresenter;
+    public void setPhotoDetailPresenter(@NonNull PhotoDetailContract.Presenter photoDetailPresenter) {
+        this.photoDetailPresenter = photoDetailPresenter;
     }
 
     @Override
@@ -24,18 +24,18 @@ public class PhotoListTabletPresenter implements PhotoListContract.Presenter,
     }
 
     @Override
-    public void loadTimeline(boolean forceUpdate) {
+    public void loadPhotos(boolean forceUpdate) {
 
     }
 
     @Override
-    public void openTweetDetails(@NonNull Tweet requestedTweet) {
+    public void openPhotoDetails(@NonNull Photo requestedPhoto) {
 
     }
 
     @Override
     public void dropView() {
-        timelinePresenter.dropView();
-        tweetDetailPresenter.dropView();
+        photoListPresenter.dropView();
+        photoDetailPresenter.dropView();
     }
 }

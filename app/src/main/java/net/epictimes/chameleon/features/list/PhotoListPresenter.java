@@ -2,31 +2,31 @@ package net.epictimes.chameleon.features.list;
 
 import android.support.annotation.NonNull;
 
-import net.epictimes.chameleon.data.TweetsRepository;
-import net.epictimes.chameleon.data.UsersRepository;
-import net.epictimes.chameleon.data.model.Tweet;
+import net.epictimes.chameleon.data.PhotoRepository;
+import net.epictimes.chameleon.data.UserRepository;
+import net.epictimes.chameleon.data.model.Photo;
 
 public class PhotoListPresenter implements PhotoListContract.Presenter {
 
-    private final TweetsRepository tweetsRepository;
-    private final UsersRepository usersRepository;
+    private final PhotoRepository photoRepository;
+    private final UserRepository userRepository;
     private PhotoListContract.View view;
 
     public PhotoListPresenter(PhotoListContract.View view,
-                              TweetsRepository tweetsRepository,
-                              UsersRepository usersRepository) {
-        this.tweetsRepository = tweetsRepository;
+                              PhotoRepository photoRepository,
+                              UserRepository userRepository) {
+        this.photoRepository = photoRepository;
         this.view = view;
-        this.usersRepository = usersRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public void loadTimeline(boolean forceUpdate) {
+    public void loadPhotos(boolean forceUpdate) {
 
     }
 
     @Override
-    public void openTweetDetails(@NonNull Tweet requestedTweet) {
+    public void openPhotoDetails(@NonNull Photo requestedPhoto) {
 
     }
 

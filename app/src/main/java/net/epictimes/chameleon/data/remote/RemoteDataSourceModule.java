@@ -8,7 +8,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import net.epictimes.chameleon.data.TweetsDataSource;
+import net.epictimes.chameleon.data.PhotoDataSource;
 
 import javax.inject.Singleton;
 
@@ -25,8 +25,8 @@ public class RemoteDataSourceModule {
     @RemoteDataSource
     @Singleton
     @Provides
-    TweetsDataSource provideRemoteDataSource(Services services) {
-        return new TweetsRemoteDataSource(services);
+    PhotoDataSource provideRemoteDataSource(Services services) {
+        return new PhotoRemoteDataSource(services);
     }
 
     @Singleton

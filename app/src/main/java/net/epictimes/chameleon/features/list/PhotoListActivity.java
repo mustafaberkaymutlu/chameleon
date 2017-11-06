@@ -23,7 +23,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
 public class PhotoListActivity extends AppCompatActivity implements HasSupportFragmentInjector {
-    private static final String CURRENT_TASK_ID_KEY = "key_current_task_i̇d";
+    private static final String CURRENT_PHOTO_ID_KEY = "key_current_task_i̇d";
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -32,7 +32,7 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     @Inject
     boolean isTablet;
 
-    private String tweetId;
+    private String photoId;
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, PhotoListActivity.class);
@@ -42,12 +42,12 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        setContentView(R.layout.activity_photo_list);
 
         setupActionBar();
 
         if (savedInstanceState != null) {
-            tweetId = savedInstanceState.getString(CURRENT_TASK_ID_KEY);
+            photoId = savedInstanceState.getString(CURRENT_PHOTO_ID_KEY);
         }
 
         if (isTablet) {
@@ -59,7 +59,7 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(CURRENT_TASK_ID_KEY, tweetId);
+        outState.putString(CURRENT_PHOTO_ID_KEY, photoId);
         super.onSaveInstanceState(outState);
     }
 
@@ -72,8 +72,8 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     }
 
     private void attachTabletFragments() {
-        final PhotoListFragment photoListFragment = findOrCreateTimelineFragment(R.id.contentFrame_list);
-        final PhotoDetailFragment photoDetailFragment = findOrCreateTweetDetailFragmentForTablet();
+        final PhotoListFragment photoListFragment = findOrCreatePhotoListFragment(R.id.contentFrame_list);
+        final PhotoDetailFragment photoDetailFragment = findOrCreatePhotoDetailFragmentForTablet();
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -87,7 +87,7 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     }
 
     private void attachPhoneFragments() {
-        final PhotoListFragment photoListFragment = findOrCreateTimelineFragment(R.id.contentFrame);
+        final PhotoListFragment photoListFragment = findOrCreatePhotoListFragment(R.id.contentFrame);
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -96,7 +96,7 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     }
 
     @NonNull
-    private PhotoListFragment findOrCreateTimelineFragment(@IdRes int fragmentId) {
+    private PhotoListFragment findOrCreatePhotoListFragment(@IdRes int fragmentId) {
         PhotoListFragment photoListFragment = (PhotoListFragment) getSupportFragmentManager()
                 .findFragmentById(fragmentId);
 
@@ -108,7 +108,7 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     }
 
     @NonNull
-    private PhotoDetailFragment findOrCreateTweetDetailFragmentForTablet() {
+    private PhotoDetailFragment findOrCreatePhotoDetailFragmentForTablet() {
         PhotoDetailFragment photoDetailFragment = (PhotoDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.contentFrame_detail);
 

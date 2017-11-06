@@ -29,7 +29,7 @@ public class PhotoDetailActivity extends AppCompatActivity implements HasSupport
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_detail);
+        setContentView(R.layout.activity_photo_detail);
     }
 
     @Override

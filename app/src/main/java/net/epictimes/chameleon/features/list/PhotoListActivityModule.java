@@ -14,15 +14,15 @@ public abstract class PhotoListActivityModule {
 
     @FragmentScoped
     @ContributesAndroidInjector(modules = PhotoListFragmentModule.class)
-    abstract PhotoListFragment contributeTimelineFragmentInjector();
+    abstract PhotoListFragment contributePhotoListFragmentInjector();
 
     @FragmentScoped
     @ContributesAndroidInjector(modules = PhotoDetailFragmentModule.class)
-    abstract PhotoDetailFragment contributeTweetDetailFragmentInjector();
+    abstract PhotoDetailFragment contributePhotoDetailFragmentInjector();
 
     @ActivityScoped
     @Provides
-    static PhotoListTabletPresenter provideTimelineTabletPresenter() {
+    static PhotoListTabletPresenter providePhotoListTabletPresenter() {
         return new PhotoListTabletPresenter();
     }
 

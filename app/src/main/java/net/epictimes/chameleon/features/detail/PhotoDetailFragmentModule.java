@@ -1,6 +1,6 @@
 package net.epictimes.chameleon.features.detail;
 
-import net.epictimes.chameleon.data.TweetsRepository;
+import net.epictimes.chameleon.data.PhotoRepository;
 import net.epictimes.chameleon.di.FragmentScoped;
 import net.epictimes.chameleon.di.IsTablet;
 import net.epictimes.chameleon.features.list.PhotoListTabletPresenter;
@@ -14,9 +14,9 @@ public class PhotoDetailFragmentModule {
 
     @FragmentScoped
     @Provides
-    PhotoDetailPresenter providePresenterImpl(TweetsRepository tweetsRepository,
+    PhotoDetailPresenter providePresenterImpl(PhotoRepository photoRepository,
                                               PhotoDetailFragment photoDetailFragment) {
-        return new PhotoDetailPresenter(tweetsRepository, photoDetailFragment);
+        return new PhotoDetailPresenter(photoRepository, photoDetailFragment);
     }
 
     @FragmentScoped
@@ -26,7 +26,7 @@ public class PhotoDetailFragmentModule {
                                                    PhotoDetailPresenter detailPresenter) {
         if (isTablet) {
             final PhotoListTabletPresenter photoListTabletPresenter = tabletPresenterLazy.get();
-            photoListTabletPresenter.setTweetDetailPresenter(detailPresenter);
+            photoListTabletPresenter.setPhotoDetailPresenter(detailPresenter);
             return photoListTabletPresenter;
         } else {
             return detailPresenter;
