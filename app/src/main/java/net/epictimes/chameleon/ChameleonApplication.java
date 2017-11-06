@@ -19,7 +19,7 @@ import dagger.android.HasActivityInjector;
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
-public class OwlApplication extends Application implements HasActivityInjector {
+public class ChameleonApplication extends Application implements HasActivityInjector {
     private RefWatcher refWatcher;
     private SingletonComponent singletonComponent;
 

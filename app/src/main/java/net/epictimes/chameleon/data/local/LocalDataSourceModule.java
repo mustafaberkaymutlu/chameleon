@@ -2,7 +2,7 @@ package net.epictimes.chameleon.data.local;
 
 import android.arch.persistence.room.Room;
 
-import net.epictimes.chameleon.OwlApplication;
+import net.epictimes.chameleon.ChameleonApplication;
 import net.epictimes.chameleon.data.TweetsDataSource;
 import net.epictimes.chameleon.data.UsersDataSource;
 import net.epictimes.chameleon.util.AppExecutors;
@@ -31,22 +31,22 @@ public class LocalDataSourceModule {
 
     @Singleton
     @Provides
-    OwlDatabase provideOwlDatabase(OwlApplication owlApplication) {
-        return Room.databaseBuilder(owlApplication,
-                OwlDatabase.class, OwlDatabase.DATABASE_NAME)
+    ChameleonDatabase provideChameleonDatabase(ChameleonApplication chameleonApplication) {
+        return Room.databaseBuilder(chameleonApplication,
+                ChameleonDatabase.class, ChameleonDatabase.DATABASE_NAME)
                 .build();
     }
 
     @Singleton
     @Provides
-    UserDao provideUserDao(OwlDatabase owlDatabase) {
-        return owlDatabase.userDao();
+    UserDao provideUserDao(ChameleonDatabase chameleonDatabase) {
+        return chameleonDatabase.userDao();
     }
 
     @Singleton
     @Provides
-    TweetDao provideTweetDao(OwlDatabase owlDatabase) {
-        return owlDatabase.tweetsDao();
+    TweetDao provideTweetDao(ChameleonDatabase chameleonDatabase) {
+        return chameleonDatabase.tweetsDao();
     }
 
 }

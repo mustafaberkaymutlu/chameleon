@@ -1,6 +1,6 @@
 package net.epictimes.chameleon.di;
 
-import net.epictimes.chameleon.OwlApplication;
+import net.epictimes.chameleon.ChameleonApplication;
 import net.epictimes.chameleon.util.ActivityUtils;
 import net.epictimes.chameleon.util.AppExecutors;
 
@@ -15,8 +15,8 @@ public class SingletonModule {
     @IsTablet
     @Singleton
     @Provides
-    boolean provideIsTablet(OwlApplication owlApplication) {
-        return ActivityUtils.isTablet(owlApplication);
+    boolean provideIsTablet(ChameleonApplication chameleonApplication) {
+        return ActivityUtils.isTablet(chameleonApplication);
     }
 
     @Singleton
