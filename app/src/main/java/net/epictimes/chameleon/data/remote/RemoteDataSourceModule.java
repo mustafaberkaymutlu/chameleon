@@ -52,6 +52,8 @@ public class RemoteDataSourceModule {
                                      @Nullable HttpLoggingInterceptor httpLoggingInterceptor) {
         final OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 
+        okHttpClientBuilder.addInterceptor(authInterceptor);
+
         if (stethoInterceptor != null) {
             okHttpClientBuilder.addNetworkInterceptor(stethoInterceptor);
         }
