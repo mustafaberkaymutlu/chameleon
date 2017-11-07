@@ -19,18 +19,24 @@ public class PhotoListTabletPresenter implements PhotoListContract.Presenter,
     }
 
     @Override
-    public void loadTask() {
+    public void loadPhoto() {
+        photoDetailPresenter.loadPhoto();
+    }
 
+    @Override
+    public void setPhotoId(int photoId) {
+        photoDetailPresenter.setPhotoId(photoId);
     }
 
     @Override
     public void loadPhotos(boolean forceUpdate) {
-
+        photoListPresenter.loadPhotos(forceUpdate);
     }
 
     @Override
-    public void openPhotoDetails(@NonNull Photo requestedPhoto) {
-
+    public void onPhotoSelected(Photo selectedPhoto) {
+        photoDetailPresenter.setPhotoId(selectedPhoto.getPhotoId());
+        photoDetailPresenter.loadPhoto();
     }
 
     @Override

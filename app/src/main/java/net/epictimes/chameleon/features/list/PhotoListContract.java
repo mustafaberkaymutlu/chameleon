@@ -1,7 +1,5 @@
 package net.epictimes.chameleon.features.list;
 
-import android.support.annotation.NonNull;
-
 import net.epictimes.chameleon.data.model.Photo;
 import net.epictimes.chameleon.features.BasePresenter;
 import net.epictimes.chameleon.features.BaseView;
@@ -12,7 +10,7 @@ public interface PhotoListContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showPhotoDetailUi(Integer photoId);
+        void showPhotoDetailUi(int photoId);
 
         void showPhotos(List<Photo> photos);
 
@@ -29,7 +27,7 @@ public interface PhotoListContract {
          */
         void loadPhotos(boolean forceUpdate);
 
-        void openPhotoDetails(@NonNull Photo requestedPhoto);
+        void onPhotoSelected(Photo selectedPhoto);
 
     }
 

@@ -1,5 +1,6 @@
 package net.epictimes.chameleon.features.detail;
 
+import net.epictimes.chameleon.data.model.Photo;
 import net.epictimes.chameleon.features.BasePresenter;
 import net.epictimes.chameleon.features.BaseView;
 
@@ -7,7 +8,9 @@ public interface PhotoDetailContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showMissingTask();
+        void showPhoto(Photo photo);
+
+        void showMissingPhoto();
 
         boolean isActive();
 
@@ -15,7 +18,9 @@ public interface PhotoDetailContract {
 
     interface Presenter extends BasePresenter {
 
-        void loadTask();
+        void loadPhoto();
+
+        void setPhotoId(int photoId);
 
     }
 

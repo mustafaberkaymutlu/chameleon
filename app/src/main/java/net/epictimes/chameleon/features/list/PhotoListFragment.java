@@ -2,6 +2,7 @@ package net.epictimes.chameleon.features.list;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import net.epictimes.chameleon.R;
 import net.epictimes.chameleon.data.model.Photo;
+import net.epictimes.chameleon.features.detail.PhotoDetailActivity;
 
 import java.util.List;
 
@@ -63,13 +65,20 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
                 = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
         recyclerViewPhotos.addItemDecoration(dividerItemDecoration);
 
+        final PhotosRecyclerViewAdapter.ClickListener clickListener = (view, position) -> {
+            final Photo selectedPhoto = recyclerViewAdapter.getPhotoList().get(position);
+            presenter.onPhotoSelected(selectedPhoto);
+        };
+
         recyclerViewAdapter = new PhotosRecyclerViewAdapter();
+        recyclerViewAdapter.setClickListener(clickListener);
         recyclerViewPhotos.setAdapter(recyclerViewAdapter);
     }
 
     @Override
-    public void showPhotoDetailUi(Integer photoId) {
-
+    public void showPhotoDetailUi(int photoId) {
+        final Intent photoDetailIntent = PhotoDetailActivity.newIntent(getContext(), photoId);
+        startActivity(photoDetailIntent);
     }
 
     @Override

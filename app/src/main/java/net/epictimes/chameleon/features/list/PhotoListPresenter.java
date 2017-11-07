@@ -1,7 +1,5 @@
 package net.epictimes.chameleon.features.list;
 
-import android.support.annotation.NonNull;
-
 import net.epictimes.chameleon.data.PhotoDataSource;
 import net.epictimes.chameleon.data.PhotoRepository;
 import net.epictimes.chameleon.data.model.Photo;
@@ -13,8 +11,7 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
     private final PhotoRepository photoRepository;
     private PhotoListContract.View view;
 
-    public PhotoListPresenter(PhotoListContract.View view,
-                              PhotoRepository photoRepository) {
+    PhotoListPresenter(PhotoListContract.View view, PhotoRepository photoRepository) {
         this.photoRepository = photoRepository;
         this.view = view;
     }
@@ -39,8 +36,8 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
     }
 
     @Override
-    public void openPhotoDetails(@NonNull Photo requestedPhoto) {
-
+    public void onPhotoSelected(Photo selectedPhoto) {
+        view.showPhotoDetailUi(selectedPhoto.getPhotoId());
     }
 
     @Override

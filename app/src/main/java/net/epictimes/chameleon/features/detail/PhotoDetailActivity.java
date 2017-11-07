@@ -17,12 +17,15 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
 public class PhotoDetailActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+    private static final String KEY_PHOTO_ID = "photo_i̇d";
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
-    public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, PhotoDetailActivity.class);
+    public static Intent newIntent(@NonNull Context context, int photoId) {
+        final Intent intent = new Intent(context, PhotoDetailActivity.class);
+        intent.putExtra(KEY_PHOTO_ID, photoId);
+        return intent;
     }
 
     @Override
@@ -30,7 +33,15 @@ public class PhotoDetailActivity extends AppCompatActivity implements HasSupport
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_detail);
+
+        final int photoId = getIntent().getIntExtra(KEY_PHOTO_ID, -1);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.contentFrame, PhotoDetailFragment.newInstance(photoId))
+                .commit();
     }
+
 
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {

@@ -21,7 +21,6 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
 public class PhotoListActivity extends AppCompatActivity implements HasSupportFragmentInjector {
-    private static final String CURRENT_PHOTO_ID_KEY = "key_current_photo_i̇d";
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -29,8 +28,6 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     @IsTablet
     @Inject
     boolean isTablet;
-
-    private String photoId;
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, PhotoListActivity.class);
@@ -45,21 +42,11 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (savedInstanceState != null) {
-            photoId = savedInstanceState.getString(CURRENT_PHOTO_ID_KEY);
-        }
-
         if (isTablet) {
             attachTabletFragments();
         } else {
             attachPhoneFragments();
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(CURRENT_PHOTO_ID_KEY, photoId);
-        super.onSaveInstanceState(outState);
     }
 
     private void attachTabletFragments() {
