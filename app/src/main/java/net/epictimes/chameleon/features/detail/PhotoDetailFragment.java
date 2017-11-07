@@ -69,8 +69,12 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        int photoId = -1;
+
         final Bundle args = getArguments();
-        final int photoId = args.getInt(KEY_PHOTO_ID, -1);
+        if (args != null) {
+            photoId = args.getInt(KEY_PHOTO_ID, -1);
+        }
 
         presenter.setPhotoId(photoId);
     }
