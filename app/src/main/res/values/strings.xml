@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Chameleon</string>
+
+    <plurals name="likeCount">
+        <item quantity="one">%d person like this photo.</item>
+        <item quantity="other">%d people like this photo.</item>
+    </plurals>
 </resources>

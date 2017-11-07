@@ -76,9 +76,9 @@ public class PhotosRecyclerViewAdapter
 
             this.clickListener = clickListener;
 
+            imageViewPhoto = itemView.findViewById(R.id.imageViewPhoto);
             imageViewUser = itemView.findViewById(R.id.imageViewUser);
             textViewUserName = itemView.findViewById(R.id.textViewUserName);
-            imageViewPhoto = itemView.findViewById(R.id.imageViewPhoto);
             textViewPhotoName = itemView.findViewById(R.id.textViewPhotoName);
 
             itemView.setOnClickListener(this);

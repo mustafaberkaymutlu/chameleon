@@ -4,14 +4,19 @@ package net.epictimes.chameleon.features.detail;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.github.chrisbanes.photoview.PhotoView;
 
 import net.epictimes.chameleon.R;
 import net.epictimes.chameleon.data.model.Photo;
+import net.epictimes.chameleon.util.GlideApp;
 
 import javax.inject.Inject;
 
@@ -22,6 +27,19 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
 
     @Inject
     PhotoDetailContract.Presenter presenter;
+
+    private PhotoView photoView;
+    private ConstraintLayout containerInfo;
+    private ImageView imageViewUser;
+    private TextView textViewUserName;
+    private TextView textViewCreated;
+    private TextView textViewLikeCount;
+    private FragmentListener fragmentListener;
+
+    public interface FragmentListener {
+        void onPhotoTapped();
+        void setToolbarTitle(String title);
+    }
 
     public static PhotoDetailFragment newInstance() {
         return new PhotoDetailFragment();
@@ -39,6 +57,12 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
+
+        try {
+            fragmentListener = (FragmentListener) context;
+        } catch (ClassCastException ignored) {
+            throw new ClassCastException(context.toString() + " must implement FragmentListener");
+        }
     }
 
     @Override
@@ -57,6 +81,28 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        photoView = view.findViewById(R.id.photoViewPhoto);
+        containerInfo = view.findViewById(R.id.containerInfo);
+        imageViewUser = view.findViewById(R.id.imageViewPhoto);
+        textViewUserName = view.findViewById(R.id.textViewUserName);
+        textViewCreated = view.findViewById(R.id.textViewCreated);
+        textViewLikeCount = view.findViewById(R.id.textViewLikeCount);
+
+        photoView.setOnViewTapListener((view1, x, y) -> {
+            fragmentListener.onPhotoTapped();
+
+            if (containerInfo.getVisibility() == View.VISIBLE) {
+                containerInfo.setVisibility(View.GONE);
+            } else {
+                containerInfo.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
 
@@ -65,7 +111,22 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
 
     @Override
     public void showPhoto(Photo photo) {
-        Toast.makeText(getContext(), "photo name: " + photo.getName(), Toast.LENGTH_SHORT).show();
+        GlideApp.with(this)
+                .load(photo.getImageUrl())
+                .into(photoView);
+
+        GlideApp.with(this)
+                .load(photo.getUser().getUserPicUrl())
+                .into(imageViewUser);
+
+        textViewUserName.setText(photo.getUser().getFullName());
+        textViewCreated.setText(photo.getCreatedAt());
+
+        final String likeCount = getResources().getQuantityString(R.plurals.likeCount,
+                photo.getVotesCount(), photo.getVotesCount());
+        textViewLikeCount.setText(likeCount);
+
+        fragmentListener.setToolbarTitle(photo.getName());
     }
 
     @Override
