@@ -9,13 +9,13 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "photos",
-        foreignKeys = {
-                @ForeignKey(entity = User.class,
-                        parentColumns = "userId",
-                        childColumns = "userId",
-                        onDelete = ForeignKey.CASCADE)
-        }
+@Entity(tableName = "photos"
+//        foreignKeys = {
+//                @ForeignKey(entity = User.class,
+//                        parentColumns = "userId",
+//                        childColumns = "userId",
+//                        onDelete = ForeignKey.CASCADE)
+//        }
 )
 public class Photo {
 

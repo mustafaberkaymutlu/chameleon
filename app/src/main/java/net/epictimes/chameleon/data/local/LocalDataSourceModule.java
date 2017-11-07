@@ -4,7 +4,6 @@ import android.arch.persistence.room.Room;
 
 import net.epictimes.chameleon.ChameleonApplication;
 import net.epictimes.chameleon.data.PhotoDataSource;
-import net.epictimes.chameleon.data.UserDataSource;
 import net.epictimes.chameleon.util.AppExecutors;
 
 import javax.inject.Singleton;
@@ -14,13 +13,6 @@ import dagger.Provides;
 
 @Module
 public class LocalDataSourceModule {
-
-    @LocalDataSource
-    @Singleton
-    @Provides
-    UserDataSource provideUsersDataSource(UserDao userDao, AppExecutors appExecutors) {
-        return new UserLocalDataSource(userDao, appExecutors);
-    }
 
     @LocalDataSource
     @Singleton
@@ -35,12 +27,6 @@ public class LocalDataSourceModule {
         return Room.databaseBuilder(chameleonApplication,
                 ChameleonDatabase.class, ChameleonDatabase.DATABASE_NAME)
                 .build();
-    }
-
-    @Singleton
-    @Provides
-    UserDao provideUserDao(ChameleonDatabase chameleonDatabase) {
-        return chameleonDatabase.userDao();
     }
 
     @Singleton

@@ -18,10 +18,4 @@ public class RepositoryModule {
         return new PhotoRepository(remoteDataSource, localDataSource);
     }
 
-    @Singleton
-    @Provides
-    UserRepository provideUsersRepository(@LocalDataSource UserDataSource localDataSource) {
-        return new UserRepository(localDataSource);
-    }
-
 }

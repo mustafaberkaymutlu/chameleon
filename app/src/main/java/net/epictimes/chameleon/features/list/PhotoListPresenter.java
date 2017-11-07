@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import net.epictimes.chameleon.data.PhotoDataSource;
 import net.epictimes.chameleon.data.PhotoRepository;
-import net.epictimes.chameleon.data.UserRepository;
 import net.epictimes.chameleon.data.model.Photo;
 
 import java.util.List;
@@ -12,15 +11,12 @@ import java.util.List;
 public class PhotoListPresenter implements PhotoListContract.Presenter {
 
     private final PhotoRepository photoRepository;
-    private final UserRepository userRepository;
     private PhotoListContract.View view;
 
     public PhotoListPresenter(PhotoListContract.View view,
-                              PhotoRepository photoRepository,
-                              UserRepository userRepository) {
+                              PhotoRepository photoRepository) {
         this.photoRepository = photoRepository;
         this.view = view;
-        this.userRepository = userRepository;
     }
 
     @Override

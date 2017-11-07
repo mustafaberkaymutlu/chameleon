@@ -1,7 +1,6 @@
 package net.epictimes.chameleon.features.list;
 
 import net.epictimes.chameleon.data.PhotoRepository;
-import net.epictimes.chameleon.data.UserRepository;
 import net.epictimes.chameleon.di.FragmentScoped;
 import net.epictimes.chameleon.di.IsTablet;
 
@@ -15,9 +14,8 @@ public class PhotoListFragmentModule {
     @FragmentScoped
     @Provides
     PhotoListPresenter providePresenterImpl(PhotoRepository photoRepository,
-                                            UserRepository userRepository,
                                             PhotoListFragment photoListFragment) {
-        return new PhotoListPresenter(photoListFragment, photoRepository, userRepository);
+        return new PhotoListPresenter(photoListFragment, photoRepository);
     }
 
     @FragmentScoped
