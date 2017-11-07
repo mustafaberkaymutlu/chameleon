@@ -86,7 +86,7 @@ public class PhotoListActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPhotoTapped() {
+    public void setUiVisibility(boolean showUi) {
         // no-op
     }
 

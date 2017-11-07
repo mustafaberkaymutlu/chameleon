@@ -24,6 +24,7 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class PhotoDetailFragment extends Fragment implements PhotoDetailContract.View {
     private static final String KEY_PHOTO_ID = "photo_i̇d";
+    private static final String KEY_INFO_SHOWING = "info_showing";
 
     @Inject
     PhotoDetailContract.Presenter presenter;
@@ -36,8 +37,12 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     private TextView textViewLikeCount;
     private FragmentListener fragmentListener;
 
+    private int photoId = -1;
+    private boolean isInfoShowing = true;
+
     public interface FragmentListener {
-        void onPhotoTapped();
+        void setUiVisibility(boolean showUi);
+
         void setToolbarTitle(String title);
     }
 
@@ -69,11 +74,14 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int photoId = -1;
-
-        final Bundle args = getArguments();
-        if (args != null) {
-            photoId = args.getInt(KEY_PHOTO_ID, -1);
+        if (savedInstanceState != null) {
+            photoId = savedInstanceState.getInt(KEY_PHOTO_ID);
+            isInfoShowing = savedInstanceState.getBoolean(KEY_INFO_SHOWING);
+        } else {
+            final Bundle args = getArguments();
+            if (args != null) {
+                photoId = args.getInt(KEY_PHOTO_ID, -1);
+            }
         }
 
         presenter.setPhotoId(photoId);
@@ -96,14 +104,16 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
         textViewLikeCount = view.findViewById(R.id.textViewLikeCount);
 
         photoView.setOnViewTapListener((view1, x, y) -> {
-            fragmentListener.onPhotoTapped();
-
-            if (containerInfo.getVisibility() == View.VISIBLE) {
-                containerInfo.setVisibility(View.GONE);
-            } else {
-                containerInfo.setVisibility(View.VISIBLE);
-            }
+            isInfoShowing = !isInfoShowing;
+            updateInfoContainerVisibility();
         });
+
+        updateInfoContainerVisibility();
+    }
+
+    private void updateInfoContainerVisibility() {
+        containerInfo.setVisibility(isInfoShowing ? View.VISIBLE : View.GONE);
+        fragmentListener.setUiVisibility(isInfoShowing);
     }
 
     @Override
@@ -114,7 +124,16 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(KEY_PHOTO_ID, photoId);
+        outState.putBoolean(KEY_INFO_SHOWING, isInfoShowing);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void showPhoto(Photo photo) {
+        this.photoId = photo.getPhotoId();
+
         GlideApp.with(this)
                 .load(photo.getImageUrl())
                 .into(photoView);

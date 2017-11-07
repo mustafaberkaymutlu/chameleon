@@ -51,13 +51,13 @@ public class PhotoDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPhotoTapped() {
-        if (toolbar.getVisibility() == View.VISIBLE) {
-            toolbar.setVisibility(View.INVISIBLE);
-            hideSystemUi();
-        } else {
+    public void setUiVisibility(boolean showUi) {
+        if (showUi) {
             toolbar.setVisibility(View.VISIBLE);
             showSystemUi();
+        } else {
+            toolbar.setVisibility(View.INVISIBLE);
+            hideSystemUi();
         }
     }
 
