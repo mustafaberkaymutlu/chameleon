@@ -3,7 +3,6 @@ package net.epictimes.chameleon.features.list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
 public class PhotoListActivity extends AppCompatActivity implements HasSupportFragmentInjector {
-    private static final String CURRENT_PHOTO_ID_KEY = "key_current_task_i̇d";
+    private static final String CURRENT_PHOTO_ID_KEY = "key_current_photo_i̇d";
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -64,51 +63,37 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     }
 
     private void attachTabletFragments() {
-        final PhotoListFragment photoListFragment = findOrCreatePhotoListFragment(R.id.contentFrame_list);
-        final PhotoDetailFragment photoDetailFragment = findOrCreatePhotoDetailFragmentForTablet();
+        final boolean isContentFrameListEmpty = isFragmentDetached(R.id.contentFrame_list);
+        final boolean isContentFrameDetailEmpty = isFragmentDetached(R.id.contentFrame_detail);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.contentFrame_list, photoListFragment)
-                .commit();
+        if (isContentFrameListEmpty) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.contentFrame_list, PhotoListFragment.newInstance())
+                    .commit();
+        }
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.contentFrame_detail, photoDetailFragment)
-                .commit();
+        if (isContentFrameDetailEmpty) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.contentFrame_detail, PhotoDetailFragment.newInstance())
+                    .commit();
+        }
     }
 
     private void attachPhoneFragments() {
-        final PhotoListFragment photoListFragment = findOrCreatePhotoListFragment(R.id.contentFrame);
+        final boolean isContentFrameEmpty = isFragmentDetached(R.id.contentFrame);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.contentFrame, photoListFragment)
-                .commit();
+        if (isContentFrameEmpty) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.contentFrame, PhotoListFragment.newInstance())
+                    .commit();
+        }
     }
 
-    @NonNull
-    private PhotoListFragment findOrCreatePhotoListFragment(@IdRes int fragmentId) {
-        PhotoListFragment photoListFragment = (PhotoListFragment) getSupportFragmentManager()
-                .findFragmentById(fragmentId);
-
-        if (photoListFragment == null) {
-            photoListFragment = PhotoListFragment.newInstance();
-        }
-
-        return photoListFragment;
-    }
-
-    @NonNull
-    private PhotoDetailFragment findOrCreatePhotoDetailFragmentForTablet() {
-        PhotoDetailFragment photoDetailFragment = (PhotoDetailFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.contentFrame_detail);
-
-        if (photoDetailFragment == null) {
-            photoDetailFragment = PhotoDetailFragment.newInstance();
-        }
-
-        return photoDetailFragment;
+    private boolean isFragmentDetached(int fragmentId) {
+        return getSupportFragmentManager().findFragmentById(fragmentId) == null;
     }
 
     @Override
