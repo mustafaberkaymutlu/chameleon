@@ -1,9 +1,11 @@
 package net.epictimes.chameleon.data.remote;
 
+import net.epictimes.chameleon.data.model.GetPhotoResponse;
 import net.epictimes.chameleon.data.model.GetPhotosResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface Services {
 
@@ -15,5 +17,8 @@ public interface Services {
 
     @GET("v1/photos?feature=popular&image_size=2048")
     Call<GetPhotosResponse> getPopularPhotos();
+
+    @GET("v1/photos/{photo-id}")
+    Call<GetPhotoResponse> getPhoto(@Path("photo-id") int photoId);
 
 }

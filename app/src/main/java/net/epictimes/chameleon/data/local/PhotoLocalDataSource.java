@@ -33,7 +33,7 @@ public class PhotoLocalDataSource implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(@NonNull Integer photoId, @NonNull GetPhotoCallback callback) {
+    public void getPhoto(@NonNull int photoId, @NonNull GetPhotoCallback callback) {
         appExecutors.diskIo().execute(() -> {
             final Photo photo = photoDao.getPhotoById(photoId);
 
@@ -53,7 +53,7 @@ public class PhotoLocalDataSource implements PhotoDataSource {
     }
 
     @Override
-    public void deletePhoto(@NonNull String photoId) {
+    public void deletePhoto(int photoId) {
         appExecutors.diskIo().execute(() -> photoDao.deletePhotoById(photoId));
     }
 

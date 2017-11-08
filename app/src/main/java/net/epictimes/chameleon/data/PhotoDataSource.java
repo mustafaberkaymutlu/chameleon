@@ -25,11 +25,11 @@ public interface PhotoDataSource {
 
     void getPhotos(@NonNull LoadPhotosCallback callback);
 
-    void getPhoto(@NonNull Integer photoId, @NonNull GetPhotoCallback callback);
+    void getPhoto(int photoId, @NonNull GetPhotoCallback callback);
 
     void savePhoto(@NonNull Photo photo);
 
-    void deletePhoto(@NonNull String photoId);
+    void deletePhoto(int photoId);
 
     void deleteAllPhotos();
 

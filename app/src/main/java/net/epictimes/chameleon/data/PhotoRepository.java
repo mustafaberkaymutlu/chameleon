@@ -55,7 +55,7 @@ public class PhotoRepository implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(@NonNull Integer photoId, @NonNull GetPhotoCallback callback) {
+    public void getPhoto(int photoId, @NonNull GetPhotoCallback callback) {
         Photo cachedPhoto = getPhotoFromCache(photoId);
 
         if (cachedPhoto != null) {
@@ -95,7 +95,7 @@ public class PhotoRepository implements PhotoDataSource {
     }
 
     @Override
-    public void deletePhoto(@NonNull String photoId) {
+    public void deletePhoto(int photoId) {
         photoLocalDataSource.deletePhoto(photoId);
         cachedPhotos.remove(photoId);
     }
