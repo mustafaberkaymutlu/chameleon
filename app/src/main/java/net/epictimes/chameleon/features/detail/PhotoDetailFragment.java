@@ -41,8 +41,6 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     private boolean isInfoShowing = true;
 
     public interface FragmentListener {
-        void setUiVisibility(boolean showUi);
-
         void setToolbarTitle(String title);
     }
 
@@ -113,7 +111,6 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
 
     private void updateInfoContainerVisibility() {
         containerInfo.setVisibility(isInfoShowing ? View.VISIBLE : View.GONE);
-        fragmentListener.setUiVisibility(isInfoShowing);
     }
 
     @Override
@@ -143,7 +140,7 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
                 .into(imageViewUser);
 
         textViewUserName.setText(photo.getUser().getFullName());
-        textViewCreated.setText(photo.getCreatedAt());
+        textViewCreated.setText(photo.getCreatedAt().toString());
 
         final String likeCount = getResources().getQuantityString(R.plurals.likeCount,
                 photo.getVotesCount(), photo.getVotesCount());
