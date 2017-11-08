@@ -2,8 +2,10 @@ package net.epictimes.chameleon.data.model;
 
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -151,6 +153,17 @@ public class Photo {
 
     @SerializedName("is_free_photo")
     private Boolean isFreePhoto;
+
+    public Photo() {
+    }
+
+    @VisibleForTesting
+    @Ignore
+    public Photo(@NonNull Integer photoId, Integer userId, String name) {
+        this.photoId = photoId;
+        this.userId = userId;
+        this.name = name;
+    }
 
     public Integer getPhotoId() {
         return photoId;

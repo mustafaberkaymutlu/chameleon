@@ -2,6 +2,7 @@ package net.epictimes.chameleon.data;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import net.epictimes.chameleon.data.model.Photo;
 
@@ -18,7 +19,8 @@ public class PhotoRepository implements PhotoDataSource {
     @NonNull
     private final PhotoDataSource photoLocalDataSource;
 
-    private final Map<Integer, Photo> cachedPhotos = new LinkedHashMap<>();
+    @VisibleForTesting
+    final Map<Integer, Photo> cachedPhotos = new LinkedHashMap<>();
 
     private boolean isCacheDirty = false;
 
@@ -54,7 +56,7 @@ public class PhotoRepository implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(int photoId, @NonNull GetPhotoCallback callback) {
+    public void getPhoto(int photoId, @NonNull LoadPhotoCallback callback) {
         Photo cachedPhoto = getPhotoFromCache(photoId);
 
         if (cachedPhoto != null) {
@@ -62,7 +64,7 @@ public class PhotoRepository implements PhotoDataSource {
             return;
         }
 
-        photoLocalDataSource.getPhoto(photoId, new GetPhotoCallback() {
+        photoLocalDataSource.getPhoto(photoId, new LoadPhotoCallback() {
             @Override
             public void onPhotoLoaded(Photo photo) {
                 cachedPhotos.put(photo.getPhotoId(), photo);
@@ -71,7 +73,7 @@ public class PhotoRepository implements PhotoDataSource {
 
             @Override
             public void onPhotoNotAvailable() {
-                photoRemoteDataSource.getPhoto(photoId, new GetPhotoCallback() {
+                photoRemoteDataSource.getPhoto(photoId, new LoadPhotoCallback() {
                     @Override
                     public void onPhotoLoaded(Photo photo) {
                         cachedPhotos.put(photo.getPhotoId(), photo);

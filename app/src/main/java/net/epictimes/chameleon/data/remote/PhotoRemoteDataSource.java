@@ -51,7 +51,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(int photoId, @NonNull GetPhotoCallback callback) {
+    public void getPhoto(int photoId, @NonNull LoadPhotoCallback callback) {
         services.getPhoto(photoId)
                 .enqueue(new Callback<GetPhotoResponse>() {
                     @Override

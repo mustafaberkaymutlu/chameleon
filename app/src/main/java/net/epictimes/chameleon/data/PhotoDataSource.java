@@ -15,7 +15,7 @@ public interface PhotoDataSource {
         void onPhotosNotAvailable();
     }
 
-    interface GetPhotoCallback {
+    interface LoadPhotoCallback {
 
         void onPhotoLoaded(Photo photo);
 
@@ -25,7 +25,7 @@ public interface PhotoDataSource {
 
     void getPhotos(@NonNull LoadPhotosCallback callback);
 
-    void getPhoto(int photoId, @NonNull GetPhotoCallback callback);
+    void getPhoto(int photoId, @NonNull LoadPhotoCallback callback);
 
     void savePhoto(@NonNull Photo photo);
 
