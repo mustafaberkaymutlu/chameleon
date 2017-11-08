@@ -17,18 +17,18 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
     }
 
     @Override
-    public void loadPhotos(boolean forceUpdate) {
+    public void loadPhotos() {
         photoRepository.getPhotos(new PhotoDataSource.LoadPhotosCallback() {
             @Override
             public void onPhotosLoaded(List<Photo> photos) {
-                if (view != null) {
+                if (view != null && view.isActive()) {
                     view.showPhotos(photos);
                 }
             }
 
             @Override
             public void onPhotosNotAvailable() {
-                if (view != null) {
+                if (view != null && view.isActive()) {
                     view.showLoadingPhotosError();
                 }
             }

@@ -52,7 +52,14 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
         final RecyclerView recyclerViewPhotos = view.findViewById(R.id.recyclerViewPhotos);
         initRecyclerView(recyclerViewPhotos);
 
-        presenter.loadPhotos(false);
+        presenter.loadPhotos();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        presenter.dropView();
     }
 
     private void initRecyclerView(RecyclerView recyclerViewPhotos) {
@@ -83,9 +90,8 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
 
     @Override
     public void showPhotos(List<Photo> photos) {
-        recyclerViewAdapter.getPhotoList().clear();
         recyclerViewAdapter.addAll(photos);
-        recyclerViewAdapter.notifyDataSetChanged();
+        recyclerViewAdapter.notifyItemRangeInserted(0, photos.size());
     }
 
     @Override

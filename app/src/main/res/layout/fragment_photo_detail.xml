@@ -68,5 +68,13 @@
             tools:text="18 people like this photo" />
     </android.support.constraint.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/textViewEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/empty_view_detail"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
 
 </FrameLayout>

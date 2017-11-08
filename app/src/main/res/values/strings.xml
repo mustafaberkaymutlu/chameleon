@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Chameleon</string>
+    <string name="info">Info</string>
+    <string name="error_loading_photo">Error occurred while loading photo</string>
+    <string name="empty_view_detail">No photo selected.</string>
 
     <plurals name="likeCount">
         <item quantity="one">%d person like this photo.</item>

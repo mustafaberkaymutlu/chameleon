@@ -12,8 +12,9 @@ public interface PhotoDetailContract {
 
         void showMissingPhoto();
 
-        boolean isActive();
+        void showErrorDisplayingPhoto();
 
+        boolean isActive();
     }
 
     interface Presenter extends BasePresenter {

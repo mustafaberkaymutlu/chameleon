@@ -29,8 +29,8 @@ public class PhotoListTabletPresenter implements PhotoListContract.Presenter,
     }
 
     @Override
-    public void loadPhotos(boolean forceUpdate) {
-        photoListPresenter.loadPhotos(forceUpdate);
+    public void loadPhotos() {
+        photoListPresenter.loadPhotos();
     }
 
     @Override

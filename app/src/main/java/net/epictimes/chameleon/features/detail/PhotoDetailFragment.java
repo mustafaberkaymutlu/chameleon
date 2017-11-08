@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -27,6 +28,7 @@ import dagger.android.support.AndroidSupportInjection;
 public class PhotoDetailFragment extends Fragment implements PhotoDetailContract.View {
     private static final String KEY_PHOTO_ID = "photo_i̇d";
     private static final String KEY_INFO_SHOWING = "info_showing";
+    public static final int CONTAINER_INFO_FADE_ANIM_DURATION = 200;
 
     @Inject
     PhotoDetailContract.Presenter presenter;
@@ -37,6 +39,8 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     private TextView textViewUserName;
     private TextView textViewCreated;
     private TextView textViewLikeCount;
+    private TextView textViewEmpty;
+
     private FragmentListener fragmentListener;
 
     private int photoId = -1;
@@ -102,6 +106,7 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
         textViewUserName = view.findViewById(R.id.textViewUserName);
         textViewCreated = view.findViewById(R.id.textViewCreated);
         textViewLikeCount = view.findViewById(R.id.textViewLikeCount);
+        textViewEmpty = view.findViewById(R.id.textViewEmpty);
 
         photoView.setOnViewTapListener((view1, x, y) -> {
             isInfoShowing = !isInfoShowing;
@@ -111,15 +116,18 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
         updateInfoContainerVisibility();
     }
 
-    private void updateInfoContainerVisibility() {
-        containerInfo.setVisibility(isInfoShowing ? View.VISIBLE : View.GONE);
-    }
-
     @Override
     public void onStart() {
         super.onStart();
 
         presenter.loadPhoto();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        presenter.dropView();
     }
 
     @Override
@@ -149,12 +157,22 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
                 photo.getVotesCount(), photo.getVotesCount());
         textViewLikeCount.setText(likeCount);
 
+        photoView.setVisibility(View.VISIBLE);
+        textViewEmpty.setVisibility(View.GONE);
+
         fragmentListener.setToolbarTitle(photo.getName());
     }
 
     @Override
     public void showMissingPhoto() {
+        containerInfo.setVisibility(View.GONE);
+        photoView.setVisibility(View.GONE);
+        textViewEmpty.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void showErrorDisplayingPhoto() {
+        Toast.makeText(getContext(), R.string.error_loading_photo, Toast.LENGTH_SHORT).show();
     }
 
     @Override

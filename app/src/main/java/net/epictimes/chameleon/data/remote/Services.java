@@ -15,7 +15,7 @@ public interface Services {
 
     String API_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
-    @GET("v1/photos?feature=popular&image_size=2048")
+    @GET("v1/photos?feature=popular&image_size=2048&rpp=100")
     Call<GetPhotosResponse> getPopularPhotos();
 
     @GET("v1/photos/{photo-id}")
