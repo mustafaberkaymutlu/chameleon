@@ -1,4 +1,4 @@
-package net.epictimes.chameleon.di;
+package net.epictimes.chameleon.di.scope;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

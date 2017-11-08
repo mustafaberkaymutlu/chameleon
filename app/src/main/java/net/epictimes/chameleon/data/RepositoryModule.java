@@ -1,7 +1,7 @@
 package net.epictimes.chameleon.data;
 
-import net.epictimes.chameleon.data.local.LocalDataSource;
-import net.epictimes.chameleon.data.remote.RemoteDataSource;
+import net.epictimes.chameleon.di.doc.LocalDataSource;
+import net.epictimes.chameleon.di.doc.RemoteDataSource;
 
 import javax.inject.Singleton;
 

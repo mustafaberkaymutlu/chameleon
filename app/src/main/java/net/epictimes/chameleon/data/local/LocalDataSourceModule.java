@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 
 import net.epictimes.chameleon.ChameleonApplication;
 import net.epictimes.chameleon.data.PhotoDataSource;
+import net.epictimes.chameleon.di.doc.LocalDataSource;
 import net.epictimes.chameleon.util.AppExecutors;
 
 import javax.inject.Singleton;

@@ -1,4 +1,4 @@
-package net.epictimes.chameleon.data.local;
+package net.epictimes.chameleon.di.doc;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -9,5 +9,5 @@ import javax.inject.Qualifier;
 @Qualifier
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LocalDataSource {
+public @interface IsTablet {
 }

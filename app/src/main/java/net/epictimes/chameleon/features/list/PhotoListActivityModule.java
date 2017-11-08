@@ -1,7 +1,7 @@
 package net.epictimes.chameleon.features.list;
 
-import net.epictimes.chameleon.di.ActivityScoped;
-import net.epictimes.chameleon.di.FragmentScoped;
+import net.epictimes.chameleon.di.scope.ActivityScoped;
+import net.epictimes.chameleon.di.scope.FragmentScoped;
 import net.epictimes.chameleon.features.detail.PhotoDetailFragment;
 import net.epictimes.chameleon.features.detail.PhotoDetailFragmentModule;
 

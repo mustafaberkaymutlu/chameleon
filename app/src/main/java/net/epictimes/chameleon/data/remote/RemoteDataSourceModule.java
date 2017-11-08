@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 
 import net.epictimes.chameleon.BuildConfig;
 import net.epictimes.chameleon.data.PhotoDataSource;
+import net.epictimes.chameleon.di.doc.RemoteDataSource;
 
 import javax.inject.Singleton;
 

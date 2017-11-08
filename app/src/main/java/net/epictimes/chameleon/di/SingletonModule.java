@@ -1,6 +1,7 @@
 package net.epictimes.chameleon.di;
 
 import net.epictimes.chameleon.ChameleonApplication;
+import net.epictimes.chameleon.di.doc.IsTablet;
 import net.epictimes.chameleon.util.DeviceUtils;
 import net.epictimes.chameleon.util.AppExecutors;
 

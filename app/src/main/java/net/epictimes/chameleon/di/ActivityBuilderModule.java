@@ -1,5 +1,6 @@
 package net.epictimes.chameleon.di;
 
+import net.epictimes.chameleon.di.scope.ActivityScoped;
 import net.epictimes.chameleon.features.detail.PhotoDetailActivity;
 import net.epictimes.chameleon.features.detail.PhotoDetailActivityModule;
 import net.epictimes.chameleon.features.list.PhotoListActivity;

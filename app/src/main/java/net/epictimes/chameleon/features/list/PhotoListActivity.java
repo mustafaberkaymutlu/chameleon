@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import net.epictimes.chameleon.R;
-import net.epictimes.chameleon.di.IsTablet;
+import net.epictimes.chameleon.di.doc.IsTablet;
 import net.epictimes.chameleon.features.detail.PhotoDetailFragment;
 
 import javax.inject.Inject;

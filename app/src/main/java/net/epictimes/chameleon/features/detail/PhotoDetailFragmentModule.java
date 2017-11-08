@@ -1,8 +1,8 @@
 package net.epictimes.chameleon.features.detail;
 
 import net.epictimes.chameleon.data.PhotoRepository;
-import net.epictimes.chameleon.di.FragmentScoped;
-import net.epictimes.chameleon.di.IsTablet;
+import net.epictimes.chameleon.di.scope.FragmentScoped;
+import net.epictimes.chameleon.di.doc.IsTablet;
 import net.epictimes.chameleon.features.list.PhotoListTabletPresenter;
 
 import dagger.Lazy;
