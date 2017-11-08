@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="net.epictimes.chameleon.features.list.PhotoListActivity">
+        <activity
+            android:name="net.epictimes.chameleon.features.list.PhotoListActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
