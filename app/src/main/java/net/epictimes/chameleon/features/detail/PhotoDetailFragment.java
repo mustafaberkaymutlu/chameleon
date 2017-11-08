@@ -133,6 +133,7 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
 
         GlideApp.with(this)
                 .load(photo.getImageUrl())
+                .fitCenter()
                 .into(photoView);
 
         GlideApp.with(this)
