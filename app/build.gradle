@@ -111,8 +111,8 @@ dependencies {
     annotationProcessor deps.room.compiler
 
     // Leak Canary
-    betaImplementation deps.leakCanary.real
-    productionImplementation deps.leakCanary.noOp
+    debugImplementation deps.leakCanary.real
+    releaseImplementation deps.leakCanary.noOp
 
     // Others
     implementation deps.photoView

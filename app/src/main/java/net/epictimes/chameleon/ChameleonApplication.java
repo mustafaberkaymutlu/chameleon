@@ -6,7 +6,6 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import net.epictimes.chameleon.di.DaggerSingletonComponent;
 import net.epictimes.chameleon.di.SingletonComponent;
@@ -21,7 +20,6 @@ import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 public class ChameleonApplication extends Application implements HasActivityInjector {
-    private RefWatcher refWatcher;
     private SingletonComponent singletonComponent;
 
     @Inject
@@ -34,7 +32,7 @@ public class ChameleonApplication extends Application implements HasActivityInje
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;
         }
-        refWatcher = LeakCanary.install(this);
+        LeakCanary.install(this);
 
         Fabric.with(this, new Crashlytics());
 
@@ -59,10 +57,6 @@ public class ChameleonApplication extends Application implements HasActivityInje
                 : new ReleaseLoggingTree();
 
         Timber.plant(tree);
-    }
-
-    public RefWatcher getRefWatcher() {
-        return refWatcher;
     }
 
     public SingletonComponent getSingletonComponent() {
