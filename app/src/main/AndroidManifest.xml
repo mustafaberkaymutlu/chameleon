@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.epictimes.chameleon.features.detail.PhotoDetailActivity" />
+        <activity
+            android:name="net.epictimes.chameleon.features.detail.PhotoDetailActivity"
+            android:parentActivityName=".features.list.PhotoListActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

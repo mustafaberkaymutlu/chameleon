@@ -112,7 +112,8 @@ dependencies {
     betaImplementation deps.leakCanary.real
     productionImplementation deps.leakCanary.noOp
 
+    // Others
+    implementation deps.photoView
     implementation(deps.fabric.crashlytics) { transitive = true }
-
     implementation deps.timber
 }

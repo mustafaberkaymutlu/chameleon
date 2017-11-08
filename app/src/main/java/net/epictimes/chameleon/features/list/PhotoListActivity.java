@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import net.epictimes.chameleon.R;
 import net.epictimes.chameleon.di.IsTablet;
@@ -20,7 +19,8 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class PhotoListActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+public class PhotoListActivity extends AppCompatActivity
+        implements HasSupportFragmentInjector, PhotoDetailFragment.FragmentListener {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -38,9 +38,6 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_list);
-
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         if (isTablet) {
             attachTabletFragments();
@@ -86,5 +83,15 @@ public class PhotoListActivity extends AppCompatActivity implements HasSupportFr
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
+    }
+
+    @Override
+    public void setUiVisibility(boolean showUi) {
+        // no-op
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        // no-op
     }
 }

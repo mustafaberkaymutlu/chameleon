@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageViewUser"
+        android:id="@+id/imageViewPhoto"
         android:layout_width="0dp"
         android:layout_height="400dp"
         android:layout_marginEnd="8dp"
@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUser" />
 
     <TextView
         android:id="@+id/textViewUserName"
@@ -25,15 +25,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPhoto"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPhoto"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPhoto"
+        app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+        app:layout_constraintTop_toTopOf="@+id/imageViewUser"
         tools:text="John Dao" />
 
     <ImageView
-        android:id="@+id/imageViewPhoto"
+        android:id="@+id/imageViewUser"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -53,6 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
         tools:text="City life" />
 </android.support.constraint.ConstraintLayout>
