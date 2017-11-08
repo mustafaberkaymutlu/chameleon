@@ -14,6 +14,8 @@ public interface PhotoListContract {
 
         void showPhotos(List<Photo> photos);
 
+        void setLoadingVisibility(boolean isVisible);
+
         void showLoadingPhotosError();
 
         boolean isActive();
@@ -26,6 +28,7 @@ public interface PhotoListContract {
 
         void onPhotoSelected(Photo selectedPhoto);
 
+        void onRefresh();
     }
 
 }

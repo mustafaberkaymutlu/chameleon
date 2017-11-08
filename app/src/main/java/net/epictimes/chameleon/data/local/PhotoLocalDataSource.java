@@ -12,7 +12,7 @@ public class PhotoLocalDataSource implements PhotoDataSource {
     private final AppExecutors appExecutors;
     private final PhotoDao photoDao;
 
-    public PhotoLocalDataSource(AppExecutors appExecutors, PhotoDao photoDao) {
+    PhotoLocalDataSource(AppExecutors appExecutors, PhotoDao photoDao) {
         this.appExecutors = appExecutors;
         this.photoDao = photoDao;
     }

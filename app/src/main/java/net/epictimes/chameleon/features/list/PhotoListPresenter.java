@@ -18,10 +18,13 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
 
     @Override
     public void loadPhotos() {
+        view.setLoadingVisibility(true);
+
         photoRepository.getPhotos(new PhotoDataSource.LoadPhotosCallback() {
             @Override
             public void onPhotosLoaded(List<Photo> photos) {
                 if (view != null && view.isActive()) {
+                    view.setLoadingVisibility(false);
                     view.showPhotos(photos);
                 }
             }
@@ -29,6 +32,7 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
             @Override
             public void onPhotosNotAvailable() {
                 if (view != null && view.isActive()) {
+                    view.setLoadingVisibility(false);
                     view.showLoadingPhotosError();
                 }
             }
@@ -38,6 +42,12 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
     @Override
     public void onPhotoSelected(Photo selectedPhoto) {
         view.showPhotoDetailUi(selectedPhoto.getPhotoId());
+    }
+
+    @Override
+    public void onRefresh() {
+        photoRepository.refreshPhotos();
+        loadPhotos();
     }
 
     @Override

@@ -19,7 +19,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
     @NonNull
     private final Services services;
 
-    public PhotoRemoteDataSource(@NonNull Services services) {
+    PhotoRemoteDataSource(@NonNull Services services) {
         this.services = services;
     }
 
@@ -36,6 +36,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
 
                             if (!CollectionUtils.isEmpty(photos)) {
                                 callback.onPhotosLoaded(photos);
+                                return;
                             }
                         }
 
@@ -63,6 +64,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
 
                             if (photo != null) {
                                 callback.onPhotoLoaded(photo);
+                                return;
                             }
                         }
 
