@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 @Entity(tableName = "photos"
 //        foreignKeys = {
 //                @ForeignKey(entity = User.class,
@@ -61,7 +63,7 @@ public class Photo {
     private Integer status;
 
     @SerializedName("created_at")
-    private String createdAt;
+    private Date createdAt;
 
     @SerializedName("category")
     private Integer category;
@@ -264,11 +266,11 @@ public class Photo {
         this.status = status;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
