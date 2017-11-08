@@ -59,12 +59,12 @@ public class PhotosRecyclerViewAdapter
         public static final int LAYOUT_ID = R.layout.row_photo;
 
         @Nullable
-        private ClickListener clickListener;
+        private final ClickListener clickListener;
 
-        private ImageView imageViewUser;
-        private TextView textViewUserName;
-        private ImageView imageViewPhoto;
-        private TextView textViewPhotoName;
+        private final ImageView imageViewUser;
+        private final TextView textViewUserName;
+        private final ImageView imageViewPhoto;
+        private final TextView textViewPhotoName;
 
         PhotoViewHolder(View itemView, @Nullable ClickListener clickListener) {
             super(itemView);

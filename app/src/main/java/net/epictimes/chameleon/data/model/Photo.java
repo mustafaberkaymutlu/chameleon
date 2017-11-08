@@ -165,11 +165,12 @@ public class Photo {
         this.name = name;
     }
 
+    @NonNull
     public Integer getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(Integer photoId) {
+    public void setPhotoId(@NonNull Integer photoId) {
         this.photoId = photoId;
     }
 

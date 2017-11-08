@@ -13,11 +13,4 @@ public class CollectionUtils {
         return collection == null || collection.isEmpty();
     }
 
-    public static int size(@Nullable Collection collection) {
-        return (collection == null) ? 0 : collection.size();
-    }
-
-    public static int size(@Nullable Object[] objects) {
-        return (objects == null) ? 0 : objects.length;
-    }
 }

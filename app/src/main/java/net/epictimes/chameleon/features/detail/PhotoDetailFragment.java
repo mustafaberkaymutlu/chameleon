@@ -28,7 +28,7 @@ import dagger.android.support.AndroidSupportInjection;
 public class PhotoDetailFragment extends Fragment implements PhotoDetailContract.View {
     private static final String KEY_PHOTO_ID = "photo_i̇d";
     private static final String KEY_INFO_SHOWING = "info_showing";
-    public static final int CONTAINER_INFO_FADE_ANIM_DURATION = 200;
+    private static final int CONTAINER_INFO_FADE_ANIM_DURATION = 200;
 
     @Inject
     PhotoDetailContract.Presenter presenter;

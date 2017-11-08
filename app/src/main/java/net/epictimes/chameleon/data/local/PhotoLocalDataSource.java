@@ -33,7 +33,7 @@ public class PhotoLocalDataSource implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(@NonNull int photoId, @NonNull LoadPhotoCallback callback) {
+    public void getPhoto(int photoId, @NonNull LoadPhotoCallback callback) {
         appExecutors.diskIo().execute(() -> {
             final Photo photo = photoDao.getPhotoById(photoId);
 
