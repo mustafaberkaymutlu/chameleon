@@ -1,6 +1,8 @@
 package net.epictimes.chameleon.features.detail;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -158,5 +160,33 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    private void updateInfoContainerVisibility() {
+        if (isInfoShowing) {
+            containerInfo.animate()
+                    .alpha(1f)
+                    .setDuration(CONTAINER_INFO_FADE_ANIM_DURATION)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            super.onAnimationStart(animation);
+
+                            containerInfo.setVisibility(View.VISIBLE);
+                        }
+                    });
+        } else {
+            containerInfo.animate()
+                    .alpha(0f)
+                    .setDuration(CONTAINER_INFO_FADE_ANIM_DURATION)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+
+                            containerInfo.setVisibility(View.GONE);
+                        }
+                    });
+        }
     }
 }

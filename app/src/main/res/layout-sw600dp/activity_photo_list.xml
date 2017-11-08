@@ -19,6 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/Toolbar"
             app:layout_collapseMode="pin"
+            app:title="@string/app_name"
             app:titleTextColor="@android:color/white" />
 
     </android.support.design.widget.AppBarLayout>
