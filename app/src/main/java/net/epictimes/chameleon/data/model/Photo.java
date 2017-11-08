@@ -2,8 +2,6 @@ package net.epictimes.chameleon.data.model;
 
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -11,14 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-@Entity(tableName = "photos"
-//        foreignKeys = {
-//                @ForeignKey(entity = User.class,
-//                        parentColumns = "userId",
-//                        childColumns = "userId",
-//                        onDelete = ForeignKey.CASCADE)
-//        }
-)
+@Entity(tableName = "photos")
 public class Photo {
 
     @NonNull
@@ -149,7 +140,6 @@ public class Photo {
     @SerializedName("image_format")
     private String imageFormat;
 
-    @Ignore
     @SerializedName("user")
     private User user;
 
