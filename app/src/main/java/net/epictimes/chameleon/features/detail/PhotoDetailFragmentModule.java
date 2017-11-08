@@ -16,7 +16,7 @@ public class PhotoDetailFragmentModule {
     @Provides
     PhotoDetailPresenter providePresenterImpl(PhotoRepository photoRepository,
                                               PhotoDetailFragment photoDetailFragment) {
-        return new PhotoDetailPresenter(photoRepository, photoDetailFragment);
+        return new PhotoDetailPresenter(photoDetailFragment, photoRepository);
     }
 
     @FragmentScoped

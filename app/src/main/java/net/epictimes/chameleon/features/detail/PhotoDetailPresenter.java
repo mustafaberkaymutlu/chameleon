@@ -9,7 +9,7 @@ public class PhotoDetailPresenter implements PhotoDetailContract.Presenter {
     private PhotoDetailContract.View view;
     private int photoId = -1;
 
-    PhotoDetailPresenter(PhotoRepository photoRepository, PhotoDetailContract.View view) {
+    PhotoDetailPresenter(PhotoDetailContract.View view, PhotoRepository photoRepository) {
         this.photoRepository = photoRepository;
         this.view = view;
     }
@@ -21,7 +21,7 @@ public class PhotoDetailPresenter implements PhotoDetailContract.Presenter {
             return;
         }
 
-        photoRepository.getPhoto(photoId, new PhotoDataSource.GetPhotoCallback() {
+        photoRepository.getPhoto(photoId, new PhotoDataSource.LoadPhotoCallback() {
             @Override
             public void onPhotoLoaded(Photo photo) {
                 if (view != null && view.isActive()) {
