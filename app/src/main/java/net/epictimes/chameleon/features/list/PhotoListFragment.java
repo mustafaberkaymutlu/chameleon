@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import net.epictimes.chameleon.R;
 import net.epictimes.chameleon.data.model.Photo;
@@ -28,6 +30,7 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
     @Inject
     PhotoListContract.Presenter presenter;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private PhotosRecyclerViewAdapter recyclerViewAdapter;
 
     public static PhotoListFragment newInstance() {
@@ -49,10 +52,21 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+
         final RecyclerView recyclerViewPhotos = view.findViewById(R.id.recyclerViewPhotos);
         initRecyclerView(recyclerViewPhotos);
 
-        presenter.loadPhotos(false);
+        swipeRefreshLayout.setOnRefreshListener(() -> presenter.onRefresh());
+
+        presenter.loadPhotos();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        presenter.dropView();
     }
 
     private void initRecyclerView(RecyclerView recyclerViewPhotos) {
@@ -83,14 +97,20 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
 
     @Override
     public void showPhotos(List<Photo> photos) {
-        recyclerViewAdapter.getPhotoList().clear();
-        recyclerViewAdapter.addAll(photos);
+        final List<Photo> photoList = recyclerViewAdapter.getPhotoList();
+        photoList.clear();
+        photoList.addAll(photos);
         recyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showLoadingPhotosError() {
+    public void setLoadingVisibility(boolean isVisible) {
+        swipeRefreshLayout.setRefreshing(isVisible);
+    }
 
+    @Override
+    public void showLoadingPhotosError() {
+        Toast.makeText(getContext(), getString(R.string.error_loading_photos), Toast.LENGTH_SHORT).show();
     }
 
     @Override

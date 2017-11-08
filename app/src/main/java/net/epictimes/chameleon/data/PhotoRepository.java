@@ -38,11 +38,10 @@ public class PhotoRepository implements PhotoDataSource {
         if (isCacheDirty) {
             getPhotosFromRemoteDataSource(callback);
         } else {
-            photoRemoteDataSource.getPhotos(new LoadPhotosCallback() {
+            photoLocalDataSource.getPhotos(new LoadPhotosCallback() {
                 @Override
                 public void onPhotosLoaded(List<Photo> photos) {
                     refreshCache(photos);
-                    refreshLocalDataSource(photos);
                     callback.onPhotosLoaded(new ArrayList<>(cachedPhotos.values()));
                 }
 
@@ -55,7 +54,7 @@ public class PhotoRepository implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(@NonNull Integer photoId, @NonNull GetPhotoCallback callback) {
+    public void getPhoto(int photoId, @NonNull GetPhotoCallback callback) {
         Photo cachedPhoto = getPhotoFromCache(photoId);
 
         if (cachedPhoto != null) {
@@ -95,7 +94,7 @@ public class PhotoRepository implements PhotoDataSource {
     }
 
     @Override
-    public void deletePhoto(@NonNull String photoId) {
+    public void deletePhoto(int photoId) {
         photoLocalDataSource.deletePhoto(photoId);
         cachedPhotos.remove(photoId);
     }

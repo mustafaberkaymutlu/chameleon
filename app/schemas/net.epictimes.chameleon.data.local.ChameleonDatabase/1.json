@@ -2,109 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a9b27e583aa3800e132bc36710298f1c",
+    "identityHash": "a06cdba973d469038d52c63c513eb31e",
     "entities": [
       {
-        "tableName": "users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `userName` TEXT, `firstName` TEXT, `lastName` TEXT, `city` TEXT, `country` TEXT, `userType` INTEGER, `fullName` TEXT, `userPicUrl` TEXT, `userPicHttpsUrl` TEXT, `coverUrl` TEXT, `upgradeStatus` INTEGER, `storeOn` INTEGER, `affection` INTEGER, PRIMARY KEY(`userId`))",
-        "fields": [
-          {
-            "fieldPath": "userId",
-            "columnName": "userId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "userName",
-            "columnName": "userName",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "firstName",
-            "columnName": "firstName",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "lastName",
-            "columnName": "lastName",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "city",
-            "columnName": "city",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "country",
-            "columnName": "country",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "userType",
-            "columnName": "userType",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "fullName",
-            "columnName": "fullName",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "userPicUrl",
-            "columnName": "userPicUrl",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "userPicHttpsUrl",
-            "columnName": "userPicHttpsUrl",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "coverUrl",
-            "columnName": "coverUrl",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "upgradeStatus",
-            "columnName": "upgradeStatus",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "storeOn",
-            "columnName": "storeOn",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "affection",
-            "columnName": "affection",
-            "affinity": "INTEGER",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "userId"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
         "tableName": "photos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`photoId` INTEGER NOT NULL, `userId` INTEGER, `name` TEXT, `description` TEXT, `camera` TEXT, `lens` TEXT, `focalLength` TEXT, `iso` TEXT, `shutterSpeed` TEXT, `aperture` TEXT, `timesViewed` INTEGER, `rating` REAL, `status` INTEGER, `createdAt` TEXT, `category` INTEGER, `latitude` REAL, `longitude` REAL, `takenAt` TEXT, `hiResUploaded` INTEGER, `forSale` INTEGER, `width` INTEGER, `height` INTEGER, `votesCount` INTEGER, `favoritesCount` INTEGER, `commentsCount` INTEGER, `nsfw` INTEGER, `salesCount` INTEGER, `highestRating` REAL, `licenseType` INTEGER, `converted` INTEGER, `collectionsCount` INTEGER, `cropVersion` INTEGER, `privacy` INTEGER, `profile` INTEGER, `forCritique` INTEGER, `critiquesCalloutDismissed` INTEGER, `imageUrl` TEXT, `url` TEXT, `positiveVotesCount` INTEGER, `convertedBits` INTEGER, `watermark` INTEGER, `imageFormat` TEXT, `licensingRequested` INTEGER, `licensingSuggested` INTEGER, `isFreePhoto` INTEGER, PRIMARY KEY(`photoId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`photoId` INTEGER NOT NULL, `userId` INTEGER, `name` TEXT, `description` TEXT, `camera` TEXT, `lens` TEXT, `focalLength` TEXT, `iso` TEXT, `shutterSpeed` TEXT, `aperture` TEXT, `timesViewed` INTEGER, `rating` REAL, `status` INTEGER, `createdAt` INTEGER, `category` INTEGER, `latitude` REAL, `longitude` REAL, `takenAt` TEXT, `hiResUploaded` INTEGER, `forSale` INTEGER, `width` INTEGER, `height` INTEGER, `votesCount` INTEGER, `favoritesCount` INTEGER, `commentsCount` INTEGER, `nsfw` INTEGER, `salesCount` INTEGER, `highestRating` REAL, `licenseType` INTEGER, `converted` INTEGER, `collectionsCount` INTEGER, `cropVersion` INTEGER, `privacy` INTEGER, `profile` INTEGER, `forCritique` INTEGER, `critiquesCalloutDismissed` INTEGER, `imageUrl` TEXT, `url` TEXT, `positiveVotesCount` INTEGER, `convertedBits` INTEGER, `watermark` INTEGER, `imageFormat` TEXT, `user` TEXT, `licensingRequested` INTEGER, `licensingSuggested` INTEGER, `isFreePhoto` INTEGER, PRIMARY KEY(`photoId`))",
         "fields": [
           {
             "fieldPath": "photoId",
@@ -187,7 +89,7 @@
           {
             "fieldPath": "createdAt",
             "columnName": "createdAt",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": false
           },
           {
@@ -359,6 +261,12 @@
             "notNull": false
           },
           {
+            "fieldPath": "user",
+            "columnName": "user",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "licensingRequested",
             "columnName": "licensingRequested",
             "affinity": "INTEGER",
@@ -389,7 +297,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a9b27e583aa3800e132bc36710298f1c\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a06cdba973d469038d52c63c513eb31e\")"
     ]
   }
 }

@@ -24,20 +24,16 @@ public class PhotoDetailPresenter implements PhotoDetailContract.Presenter {
         photoRepository.getPhoto(photoId, new PhotoDataSource.GetPhotoCallback() {
             @Override
             public void onPhotoLoaded(Photo photo) {
-                if (!view.isActive()) {
-                    return;
+                if (view != null && view.isActive()) {
+                    view.showPhoto(photo);
                 }
-
-                view.showPhoto(photo);
             }
 
             @Override
             public void onPhotoNotAvailable() {
-                if (!view.isActive()) {
-                    return;
+                if (view != null && view.isActive()) {
+                    view.showErrorDisplayingPhoto();
                 }
-
-                view.showMissingPhoto();
             }
         });
     }

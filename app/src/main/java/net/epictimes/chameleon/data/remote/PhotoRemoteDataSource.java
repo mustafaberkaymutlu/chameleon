@@ -3,6 +3,7 @@ package net.epictimes.chameleon.data.remote;
 import android.support.annotation.NonNull;
 
 import net.epictimes.chameleon.data.PhotoDataSource;
+import net.epictimes.chameleon.data.model.GetPhotoResponse;
 import net.epictimes.chameleon.data.model.GetPhotosResponse;
 import net.epictimes.chameleon.data.model.Photo;
 import net.epictimes.chameleon.util.CollectionUtils;
@@ -18,7 +19,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
     @NonNull
     private final Services services;
 
-    public PhotoRemoteDataSource(@NonNull Services services) {
+    PhotoRemoteDataSource(@NonNull Services services) {
         this.services = services;
     }
 
@@ -35,6 +36,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
 
                             if (!CollectionUtils.isEmpty(photos)) {
                                 callback.onPhotosLoaded(photos);
+                                return;
                             }
                         }
 
@@ -49,8 +51,31 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
     }
 
     @Override
-    public void getPhoto(@NonNull Integer photoId, @NonNull GetPhotoCallback callback) {
+    public void getPhoto(int photoId, @NonNull GetPhotoCallback callback) {
+        services.getPhoto(photoId)
+                .enqueue(new Callback<GetPhotoResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<GetPhotoResponse> call,
+                                           @NonNull Response<GetPhotoResponse> response) {
+                        final GetPhotoResponse body = response.body();
 
+                        if (body != null) {
+                            final Photo photo = body.getPhoto();
+
+                            if (photo != null) {
+                                callback.onPhotoLoaded(photo);
+                                return;
+                            }
+                        }
+
+                        callback.onPhotoNotAvailable();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<GetPhotoResponse> call, @NonNull Throwable t) {
+                        callback.onPhotoNotAvailable();
+                    }
+                });
     }
 
     @Override
@@ -59,7 +84,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
     }
 
     @Override
-    public void deletePhoto(@NonNull String photoId) {
+    public void deletePhoto(int photoId) {
         // no-op
     }
 
@@ -70,6 +95,6 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
 
     @Override
     public void refreshPhotos() {
-
+        // no-op
     }
 }

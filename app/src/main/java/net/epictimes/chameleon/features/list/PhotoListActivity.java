@@ -86,11 +86,6 @@ public class PhotoListActivity extends AppCompatActivity
     }
 
     @Override
-    public void setUiVisibility(boolean showUi) {
-        // no-op
-    }
-
-    @Override
     public void setToolbarTitle(String title) {
         // no-op
     }

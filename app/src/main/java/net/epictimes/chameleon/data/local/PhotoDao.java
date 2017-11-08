@@ -16,13 +16,13 @@ public interface PhotoDao {
     List<Photo> getPhotos();
 
     @Query("SELECT * FROM photos WHERE photoId = :photoId")
-    Photo getPhotoById(Integer photoId);
+    Photo getPhotoById(int photoId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPhoto(Photo photo);
 
     @Query("DELETE FROM photos WHERE photoId = :photoId")
-    int deletePhotoById(String photoId);
+    int deletePhotoById(int photoId);
 
     @Query("DELETE FROM photos")
     void deleteAllPhotos();

@@ -10,7 +10,7 @@ public class PhotoListTabletPresenter implements PhotoListContract.Presenter,
     private PhotoListContract.Presenter photoListPresenter;
     private PhotoDetailContract.Presenter photoDetailPresenter;
 
-    public void setPhotoListPresenter(@NonNull PhotoListContract.Presenter photoListPresenter) {
+    void setPhotoListPresenter(@NonNull PhotoListContract.Presenter photoListPresenter) {
         this.photoListPresenter = photoListPresenter;
     }
 
@@ -29,13 +29,20 @@ public class PhotoListTabletPresenter implements PhotoListContract.Presenter,
     }
 
     @Override
-    public void loadPhotos(boolean forceUpdate) {
-        photoListPresenter.loadPhotos(forceUpdate);
+    public void loadPhotos() {
+        photoListPresenter.loadPhotos();
     }
 
     @Override
     public void onPhotoSelected(Photo selectedPhoto) {
         photoDetailPresenter.setPhotoId(selectedPhoto.getPhotoId());
+        photoDetailPresenter.loadPhoto();
+    }
+
+    @Override
+    public void onRefresh() {
+        photoListPresenter.onRefresh();
+        photoDetailPresenter.setPhotoId(-1);
         photoDetailPresenter.loadPhoto();
     }
 

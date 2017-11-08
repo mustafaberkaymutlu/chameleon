@@ -1,6 +1,8 @@
 package net.epictimes.chameleon.features.detail;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -25,6 +28,7 @@ import dagger.android.support.AndroidSupportInjection;
 public class PhotoDetailFragment extends Fragment implements PhotoDetailContract.View {
     private static final String KEY_PHOTO_ID = "photo_i̇d";
     private static final String KEY_INFO_SHOWING = "info_showing";
+    public static final int CONTAINER_INFO_FADE_ANIM_DURATION = 200;
 
     @Inject
     PhotoDetailContract.Presenter presenter;
@@ -35,14 +39,14 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
     private TextView textViewUserName;
     private TextView textViewCreated;
     private TextView textViewLikeCount;
+    private TextView textViewEmpty;
+
     private FragmentListener fragmentListener;
 
     private int photoId = -1;
     private boolean isInfoShowing = true;
 
     public interface FragmentListener {
-        void setUiVisibility(boolean showUi);
-
         void setToolbarTitle(String title);
     }
 
@@ -102,6 +106,7 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
         textViewUserName = view.findViewById(R.id.textViewUserName);
         textViewCreated = view.findViewById(R.id.textViewCreated);
         textViewLikeCount = view.findViewById(R.id.textViewLikeCount);
+        textViewEmpty = view.findViewById(R.id.textViewEmpty);
 
         photoView.setOnViewTapListener((view1, x, y) -> {
             isInfoShowing = !isInfoShowing;
@@ -111,16 +116,18 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
         updateInfoContainerVisibility();
     }
 
-    private void updateInfoContainerVisibility() {
-        containerInfo.setVisibility(isInfoShowing ? View.VISIBLE : View.GONE);
-        fragmentListener.setUiVisibility(isInfoShowing);
-    }
-
     @Override
     public void onStart() {
         super.onStart();
 
         presenter.loadPhoto();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        presenter.dropView();
     }
 
     @Override
@@ -136,6 +143,7 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
 
         GlideApp.with(this)
                 .load(photo.getImageUrl())
+                .fitCenter()
                 .into(photoView);
 
         GlideApp.with(this)
@@ -143,22 +151,60 @@ public class PhotoDetailFragment extends Fragment implements PhotoDetailContract
                 .into(imageViewUser);
 
         textViewUserName.setText(photo.getUser().getFullName());
-        textViewCreated.setText(photo.getCreatedAt());
+        textViewCreated.setText(photo.getCreatedAt().toString());
 
         final String likeCount = getResources().getQuantityString(R.plurals.likeCount,
                 photo.getVotesCount(), photo.getVotesCount());
         textViewLikeCount.setText(likeCount);
+
+        photoView.setVisibility(View.VISIBLE);
+        textViewEmpty.setVisibility(View.GONE);
 
         fragmentListener.setToolbarTitle(photo.getName());
     }
 
     @Override
     public void showMissingPhoto() {
+        containerInfo.setVisibility(View.GONE);
+        photoView.setVisibility(View.GONE);
+        textViewEmpty.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void showErrorDisplayingPhoto() {
+        Toast.makeText(getContext(), R.string.error_loading_photo, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    private void updateInfoContainerVisibility() {
+        if (isInfoShowing) {
+            containerInfo.animate()
+                    .alpha(1f)
+                    .setDuration(CONTAINER_INFO_FADE_ANIM_DURATION)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            super.onAnimationStart(animation);
+
+                            containerInfo.setVisibility(View.VISIBLE);
+                        }
+                    });
+        } else {
+            containerInfo.animate()
+                    .alpha(0f)
+                    .setDuration(CONTAINER_INFO_FADE_ANIM_DURATION)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+
+                            containerInfo.setVisibility(View.GONE);
+                        }
+                    });
+        }
     }
 }

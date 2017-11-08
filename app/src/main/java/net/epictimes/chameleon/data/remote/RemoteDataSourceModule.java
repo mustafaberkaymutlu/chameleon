@@ -69,7 +69,9 @@ public class RemoteDataSourceModule {
     @Singleton
     @Provides
     Gson provideGson() {
-        return new GsonBuilder().create();
+        return new GsonBuilder()
+                .setDateFormat(Services.API_DATE_FORMAT)
+                .create();
     }
 
     @Singleton

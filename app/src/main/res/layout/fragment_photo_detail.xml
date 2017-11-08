@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:background="@android:color/background_dark"
     tools:context="net.epictimes.chameleon.features.detail.PhotoDetailFragment">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/photoViewPhoto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/containerInfo"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/imageViewPhoto"
             app:layout_constraintTop_toTopOf="@+id/imageViewPhoto"
@@ -46,6 +46,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewPhoto"
             app:layout_constraintStart_toEndOf="@+id/imageViewPhoto"
@@ -59,7 +60,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto"
@@ -67,5 +68,13 @@
             tools:text="18 people like this photo" />
     </android.support.constraint.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/textViewEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/empty_view_detail"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
 
 </FrameLayout>

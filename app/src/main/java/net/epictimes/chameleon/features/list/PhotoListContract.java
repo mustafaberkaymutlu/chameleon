@@ -14,6 +14,8 @@ public interface PhotoListContract {
 
         void showPhotos(List<Photo> photos);
 
+        void setLoadingVisibility(boolean isVisible);
+
         void showLoadingPhotosError();
 
         boolean isActive();
@@ -22,13 +24,11 @@ public interface PhotoListContract {
 
     interface Presenter extends BasePresenter {
 
-        /**
-         * @param forceUpdate reload data triggering a refresh from source of truth.
-         */
-        void loadPhotos(boolean forceUpdate);
+        void loadPhotos();
 
         void onPhotoSelected(Photo selectedPhoto);
 
+        void onRefresh();
     }
 
 }

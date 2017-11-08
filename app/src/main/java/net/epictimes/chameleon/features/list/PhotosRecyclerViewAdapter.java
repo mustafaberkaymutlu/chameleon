@@ -14,7 +14,6 @@ import net.epictimes.chameleon.data.model.Photo;
 import net.epictimes.chameleon.util.GlideApp;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class PhotosRecyclerViewAdapter
@@ -44,10 +43,6 @@ public class PhotosRecyclerViewAdapter
 
     public List<Photo> getPhotoList() {
         return photoList;
-    }
-
-    public void addAll(Collection<Photo> photoList) {
-        this.photoList.addAll(photoList);
     }
 
     public void setClickListener(@Nullable ClickListener clickListener) {

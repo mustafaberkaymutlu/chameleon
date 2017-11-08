@@ -21,7 +21,7 @@ buildscript {
             'retrofit': '2.3.0',
             'glide': '4.3.0',
             'permissionsDispatcher': '3.0.1',
-            'room': '1.0.0-rc1'
+            'room': '1.0.0'
     ]
 
     ext.deps = [
