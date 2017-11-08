@@ -38,11 +38,10 @@ public class PhotoRepository implements PhotoDataSource {
         if (isCacheDirty) {
             getPhotosFromRemoteDataSource(callback);
         } else {
-            photoRemoteDataSource.getPhotos(new LoadPhotosCallback() {
+            photoLocalDataSource.getPhotos(new LoadPhotosCallback() {
                 @Override
                 public void onPhotosLoaded(List<Photo> photos) {
                     refreshCache(photos);
-                    refreshLocalDataSource(photos);
                     callback.onPhotosLoaded(new ArrayList<>(cachedPhotos.values()));
                 }
 
