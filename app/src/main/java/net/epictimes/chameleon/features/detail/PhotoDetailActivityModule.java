@@ -18,7 +18,6 @@ public abstract class PhotoDetailActivityModule {
     @ActivityScoped
     @Provides
     static PhotoListTabletPresenter providePhotoListTabletPresenter() {
-        // TODO this should not be called, can be removed
         return new PhotoListTabletPresenter();
     }
 
